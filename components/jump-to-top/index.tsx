@@ -9,8 +9,6 @@ interface Props {
 export default function TopJumper({ classname }: Props) {
   const [show, switchShow] = React.useState(false);
 
-
-
   React.useEffect(() => {
     const listener = () => {
       switchShow(window.scrollY > 300);

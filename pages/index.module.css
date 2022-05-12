@@ -118,7 +118,7 @@
 .scrollbar {
   height: 100%;
 }
-.fixed {
+.fix {
   position: fixed;
   left: 0;
   right: 0;
