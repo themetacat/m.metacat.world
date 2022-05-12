@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-
+import Link from 'next/link';
 import style from './index.module.css';
 
 const page = [
@@ -46,9 +46,19 @@ export default function Header({ onClick, text }: Props) {
             onClick(page[0].label);
           }}
         >
-          {page[0].label}
+          <Link href="/" >
+            {page[0].label}
+          </Link >
         </li>
+        <li className={cn(style.item, pageState === page[1].label ? style.action : null)}
+          onClick={() => {
+            onClick(page[1].label);
 
+          }}>
+          <Link href='/builders'>
+            {page[1].label}
+          </Link>
+        </li>
         <li
           className={cn(style.item, pageState === page[4].label ? style.action : null)}
           onClick={() => {
@@ -71,7 +81,9 @@ export default function Header({ onClick, text }: Props) {
   return (
     <div className={style.container}>
       <div className={style.header_left}>
-        <img src="/images/logo.png" />
+        <Link href="/">
+          <img src="/images/logo.png" />
+        </Link>
         <div className={style.title}>METACAT</div>
       </div>
       <div className={style.pr}>
