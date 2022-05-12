@@ -199,7 +199,7 @@ function MyApp() {
     async () => {
       if (tabState === 'cryptovoxels' && twoNavState === 'Parcel') {
         setTimeout(async () => {
-          let p = page + 1
+          const p = page + 1
           const result = await getCVParcelList(p, count, null, type)
           setPage(p)
           if (result.data.parcel_list.length !== 0) {
@@ -209,7 +209,7 @@ function MyApp() {
       }
       if (tabState === 'cryptovoxels' && twoNavState === 'Events') {
         setTimeout(async () => {
-          let p = page + 1
+          const p = page + 1
           const result = await getCVEventList(p, count)
           setPage(p)
           if (result.data.event_list.length !== 0) {
@@ -219,7 +219,7 @@ function MyApp() {
       }
       if (tabState === 'decentraland' && twoNavState === 'Parcel') {
         setTimeout(async () => {
-          let p = page + 1
+          const p = page + 1
           const result = await getDCLParcelList(p, count, null, type)
           setPage(p)
           if (result.data.parcel_list.length !== 0) {
@@ -229,7 +229,7 @@ function MyApp() {
       }
       if (tabState === 'decentraland' && twoNavState === 'Events') {
         setTimeout(async () => {
-          let p = page + 1
+          const p = page + 1
           const result = await getDCLEventList(p, count)
           setPage(p)
           if (result.data.event_list.length !== 0) {
