@@ -1,7 +1,7 @@
 import React from 'react';
-import cn from 'classnames';
+// import cn from 'classnames';
 
-function Index(props) {
+function Index() {
   return <div>1</div>;
 }
 

@@ -10,7 +10,6 @@ type Props = {
   description: string;
   name: string;
   opensea_url: string;
-  parcel_id: number;
   parcel_page_url: string;
   type: string;
 };
@@ -21,7 +20,6 @@ export default function Card({
   description,
   name,
   opensea_url,
-  parcel_id,
   parcel_page_url,
   type,
 }: Props) {

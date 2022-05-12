@@ -193,8 +193,19 @@ function MyApp() {
   }, [fixedState]);
 
   const scrollLoading = React.useCallback(() => {
-    console.log(1);
-  }, []);
+    if (tabState === 'cryptovoxels' && twoNavState === 'Parcel') {
+      reqCvParcelList(false, true);
+    }
+    if (tabState === 'cryptovoxels' && twoNavState === 'Events') {
+      reqCvEventList(true);
+    }
+    if (tabState === 'decentraland' && twoNavState === 'Parcel') {
+      reqDclParcelList(false, true);
+    }
+    if (tabState === 'decentraland' && twoNavState === 'Events') {
+      reqDclEventList(true);
+    }
+  }, [tabState, twoNavState]);
 
   const rander = React.useMemo(() => {
     if (twoNavState === 'Parcel' && data) {
@@ -229,7 +240,7 @@ function MyApp() {
         </div>
       );
     }
-  }, [data]);
+  }, [data, scrollLoading]);
 
   const onSearchHandler = React.useCallback(
     (value) => {
