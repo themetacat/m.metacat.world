@@ -64,6 +64,7 @@ function MyApp() {
 
   const changeTwoNav = React.useCallback((label) => {
     setTwoNavState(label);
+    setPage(1)
   }, []);
   const changeClassifyState = React.useCallback(() => {
     setClassifyState(!classsifyState);
@@ -110,8 +111,8 @@ function MyApp() {
   }, [contact]);
 
   const reqCvParcelList = React.useCallback(
-    async (state = false, add = false) => {
-      const result = await getCVParcelList(page, count, null, type);
+    async (state = false) => {
+      const result = await getCVParcelList(1, 50, null, type);
       if (result.code === 100000) {
         setData(result.data.parcel_list);
         if (typeTotal.length === 0 || state) {
@@ -123,23 +124,23 @@ function MyApp() {
         }
       }
     },
-    [page, count, type, typeTotal],
+    [typeTotal],
   );
 
   const reqCvEventList = React.useCallback(
-    async (add = false) => {
-      const result = await getCVEventList(page, count);
+    async () => {
+      const result = await getCVEventList(1, 50);
       if (result.code === 100000) {
         setData(result.data.event_list);
         // setTypeTotal(result.data.type_total)
       }
     },
-    [page, count],
+    [],
   );
 
   const reqDclParcelList = React.useCallback(
-    async (state = false, add = false) => {
-      const result = await getDCLParcelList(page, count, null, type);
+    async (state = false,) => {
+      const result = await getDCLParcelList(1, 50, null, type);
       if (result.code === 100000) {
         setData(result.data.parcel_list);
         if (typeTotal.length === 0 || state) {
@@ -151,19 +152,19 @@ function MyApp() {
         }
       }
     },
-    [page, count, type, typeTotal],
+    [typeTotal],
   );
 
   const reqDclEventList = React.useCallback(
-    async (add = false) => {
-      const result = await getDCLEventList(page, count);
+    async () => {
+      const result = await getDCLEventList(1, 50);
       if (result.code === 100000) {
         setData(data.concat(result.data.event_list));
         setData(result.data.event_list);
         // setTypeTotal(result.data.type_total)
       }
     },
-    [page, count],
+    [],
   );
 
   const changeTab = React.useCallback(
@@ -171,9 +172,11 @@ function MyApp() {
       setTabState(t);
       if (t === 'cryptovoxels' && twoNavState === 'Parcel') {
         reqCvParcelList(true);
+        setPage(1)
       }
       if (t === 'decentraland' && twoNavState === 'Parcel') {
         reqDclParcelList(true);
+        setPage(1)
       }
       setType('all');
     },
@@ -192,20 +195,49 @@ function MyApp() {
     return () => document.removeEventListener('scroll', listener);
   }, [fixedState]);
 
-  const scrollLoading = React.useCallback(() => {
-    if (tabState === 'cryptovoxels' && twoNavState === 'Parcel') {
-      reqCvParcelList(false, true);
-    }
-    if (tabState === 'cryptovoxels' && twoNavState === 'Events') {
-      reqCvEventList(true);
-    }
-    if (tabState === 'decentraland' && twoNavState === 'Parcel') {
-      reqDclParcelList(false, true);
-    }
-    if (tabState === 'decentraland' && twoNavState === 'Events') {
-      reqDclEventList(true);
-    }
-  }, [tabState, twoNavState]);
+  const scrollLoading = React.useCallback(
+    async () => {
+      if (tabState === 'cryptovoxels' && twoNavState === 'Parcel') {
+        setTimeout(async () => {
+          let p = page + 1
+          const result = await getCVParcelList(p, count, null, type)
+          setPage(p)
+          if (result.data.parcel_list.length !== 0) {
+            setData([...data, ...result.data.parcel_list])
+          }
+        }, 1000)
+      }
+      if (tabState === 'cryptovoxels' && twoNavState === 'Events') {
+        setTimeout(async () => {
+          let p = page + 1
+          const result = await getCVEventList(p, count)
+          setPage(p)
+          if (result.data.event_list.length !== 0) {
+            setData([...data, ...result.data.event_list])
+          }
+        }, 1000)
+      }
+      if (tabState === 'decentraland' && twoNavState === 'Parcel') {
+        setTimeout(async () => {
+          let p = page + 1
+          const result = await getDCLParcelList(p, count, null, type)
+          setPage(p)
+          if (result.data.parcel_list.length !== 0) {
+            setData([...data, ...result.data.parcel_list])
+          }
+        }, 1000)
+      }
+      if (tabState === 'decentraland' && twoNavState === 'Events') {
+        setTimeout(async () => {
+          let p = page + 1
+          const result = await getDCLEventList(p, count)
+          setPage(p)
+          if (result.data.event_list.length !== 0) {
+            setData([...data, ...result.data.event_list])
+          }
+        }, 1000)
+      }
+    }, [tabState, twoNavState, page, count, type, data]);
 
   const rander = React.useMemo(() => {
     if (twoNavState === 'Parcel' && data) {
