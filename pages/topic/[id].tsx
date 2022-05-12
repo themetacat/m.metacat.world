@@ -1,7 +1,6 @@
 import React from 'react';
 import cn from "classnames"
 import style from "./index.module.css"
-import { v4 as uuid } from 'uuid';
 import Header from '../../components/header';
 import Cantact from '../../components/cantact';
 import ToTop from '../../components/jump-to-top';
@@ -76,8 +75,8 @@ export default function Topic({ base_info, parcel_list, traffic_list }) {
                 <div className={style.text}>{baseInfo.description}</div>
             </div>
             <div className={style.list}>
-                {parcelList.map((item) => {
-                    return <Card mt={style.marginbottom} {...item} key={uuid()} />;
+                {parcelList.map((item, index) => {
+                    return <Card mt={style.marginbottom} {...item} key={index} />;
                 })}
             </div>
             {contact ? zhezhao : null}
