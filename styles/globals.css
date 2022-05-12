@@ -1,0 +1,162 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.content-container {
+  width: 90%;
+  max-width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.fixed-center {
+  position: fixed;
+  right: 0;
+  left: 0;
+}
+
+@media screen and (min-width: 1280px) {
+  .content-container {
+    width: 100%;
+    padding-top: 0;
+  }
+}
+
+.main-content {
+  /* @apply container px-4 mx-auto sm:container md:container lg:container xl:container 2xl:container md:px-4 sm:px-4; */
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.page-container {
+  background-color: #111a1b;
+}
+
+.swiper-pagination-bullet {
+  width: 20px !important;
+  height: 4px !important;
+  display: inline-block !important;
+  background: #fff !important;
+  border-radius: 0 !important;
+}
+
+.swiper-pagination-bullet:hover {
+  background: #fff !important;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: 0px !important;
+}
+
+.__react_component_tooltip::before,
+.__react_component_tooltip::after {
+  bottom: -7px !important;
+}
+
+.post-content {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(4vmin, auto) [wide-start] minmax(auto, 240px) [main-start] min(
+      720px,
+      calc(100% - 8vw)
+    )
+    [main-end] minmax(auto, 240px) [wide-end] minmax(4vmin, auto) [full-end];
+}
+.leaflet-control-minimap {
+  background: rgb(7 36 41) !important;
+  border: 0.5px solid rgba(0, 208, 236, 0.6) !important;
+  box-sizing: border-box !important;
+}
+.leaflet-touch .leaflet-control-attribution,
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+  display: none !important;
+}
+
+.article {
+  @apply container md:max-w-screen-md	lg:max-w-3xl xl:max-w-3xl	mx-auto;
+}
+
+.article p {
+  @apply font-normal text-lg text-white mt-6 leading-8;
+}
+
+.article strong {
+  @apply text-white my-4;
+}
+
+.article figure {
+  @apply mt-6;
+}
+
+.article figure > figcaption {
+  @apply text-gray-100 text-sm text-center py-2;
+}
+
+.article img {
+  @apply rounded-lg;
+}
+
+.article blockquote {
+  @apply relative pl-2 mt-6 text-white italic;
+}
+
+.article blockquote::before {
+  content: '';
+  @apply absolute w-0.5 -left-0	bottom-0 top-0 bg-white;
+}
+
+.article blockquote em {
+  @apply text-gray-200;
+}
+
+.article hr {
+  @apply mt-4;
+}
+
+.article ul {
+  @apply pl-10 mt-6;
+}
+
+.article ul li {
+  @apply pl-1 list-disc text-white mt-2;
+}
+
+.article a {
+  text-decoration: underline #fff;
+}
+
+.article h2 {
+  @apply text-4xl text-white font-bold	mt-8;
+}
+
+.article h3 {
+  @apply text-2xl text-white font-bold	mt-6;
+}
+
+.article pre {
+  overflow: auto;
+  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.4);
+
+  @apply py-4 px-6 text-white text-sm bg-black rounded-md	leading-5;
+}
+
+/* fonts */
+
+.fonts-kumar-one {
+  font-family: 'Kumar One', cursive;
+}

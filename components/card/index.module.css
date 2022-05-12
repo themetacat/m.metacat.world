@@ -1,0 +1,66 @@
+.container {
+  width: 351px;
+  height: 285px;
+  background: #0f191b;
+  /* 辅-亮绿 */
+  border: 0.5px solid #00d0ec;
+}
+.container:last-child {
+  margin-bottom: 20px;
+}
+.container2 {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  background: rgba(0, 236, 222, 0.05);
+  /* 辅-亮绿 */
+  position: relative;
+  box-shadow: inset 0px 0px 15px rgba(24, 255, 241, 0.3);
+}
+.banner {
+  width: 100%;
+  height: 150px;
+  position: relative;
+}
+.title {
+  display: flex;
+  color: #fff;
+  justify-content: space-between;
+  padding: 14px 15px 0;
+}
+.title img {
+  width: 26px;
+  height: 26px;
+}
+.title div {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+}
+.detailText {
+  padding: 0 15px;
+  margin-top: 10px;
+  color: #dddddd;
+  font-weight: 400;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.type {
+  height: 24px;
+  padding: 0 8px;
+  line-height: 24px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+  font-size: 10px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 0 0 15px 0;
+}
