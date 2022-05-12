@@ -6,7 +6,7 @@ module.exports = {
     'prettier/@typescript-eslint',
     'plugin:@typescript-eslint/recommended',
   ],
-  // parser: '@typescript-eslint/parser',
+  parser: '@typescript-eslint/parser',
   plugins: [
     '@typescript-eslint',
     'eslint-comments',
