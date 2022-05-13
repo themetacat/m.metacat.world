@@ -5,16 +5,17 @@ import style from './index.module.css';
 
 type Props = {
   action: boolean;
-  icon: string;
+  icon?: string;
   label: string;
   onClick?;
+  color?
 };
 
-export default ({ action, icon, label, onClick }: Props) => {
+export default ({ action, icon, label, onClick, color }: Props) => {
   return (
-    <div className={cn(action ? style.container : style.container2)} onClick={onClick}>
+    <div className={cn(color, action ? style.container : style.container2)} onClick={onClick}>
       <div className={style.labelorIcon}>
-        <img src={icon} />
+        {icon ? <img src={icon} /> : null}
         <div>{label}</div>
       </div>
     </div>

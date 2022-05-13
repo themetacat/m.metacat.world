@@ -245,7 +245,7 @@ function MyApp() {
             dataLength={data.length}
             hasMore={true}
             next={scrollLoading}
-            loader={<Footer />}
+            loader={<Footer length={data.length} />}
           >
             {data.map((item) => {
               return <Card mt={style.margintop} {...item} key={uuid()} />;
@@ -261,7 +261,7 @@ function MyApp() {
             dataLength={data.length}
             hasMore={true}
             next={scrollLoading}
-            loader={<Footer />}
+            loader={<Footer length={data.length} />}
           >
             {data.map((item) => {
               return <Event mt={style.margintop} {...item} key={uuid()} />;

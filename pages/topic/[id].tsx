@@ -18,7 +18,6 @@ export default function Topic({ base_info, parcel_list, traffic_list }) {
     const [parcelList, setParcelList] = React.useState(parcel_list);
     const [trafficList, setTrafficList] = React.useState(traffic_list);
 
-    console.log(baseInfo, parcelList, trafficList)
 
     const handlerHeader = React.useCallback((label) => {
         if (label === 'Contact Us') {

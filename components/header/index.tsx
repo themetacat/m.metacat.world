@@ -59,6 +59,15 @@ export default function Header({ onClick, text }: Props) {
             {page[1].label}
           </Link>
         </li>
+        <li className={cn(style.item, pageState === page[2].label ? style.action : null)}
+          onClick={() => {
+            onClick(page[2].label);
+
+          }}>
+          <Link href='/wearabledao'>
+            {page[2].label}
+          </Link>
+        </li>
         <li
           className={cn(style.item, pageState === page[4].label ? style.action : null)}
           onClick={() => {

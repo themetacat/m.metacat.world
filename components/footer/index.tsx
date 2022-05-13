@@ -3,14 +3,21 @@ import React from 'react';
 
 import style from './index.module.css';
 
-export default function Footer() {
+type Props = {
+  length: number
+}
+
+export default function Footer({ length }: Props) {
   return (
     <div className={style.container}>
-      <div className={style.loding}>
-        <img src="/images/loading.png" className="animate-spin w-8 h-8" />
-        <div>loading</div>
-      </div>
-      <div className={style.content}>No more content~</div>
+      {length !== 0 ?
+        <div className={style.loding}>
+          <img src="/images/loading.png" className="animate-spin w-8 h-8" />
+          <div>loading</div>
+        </div> :
+        <div className={style.content}>No more content~</div>
+      }
+
     </div>
   );
 }
