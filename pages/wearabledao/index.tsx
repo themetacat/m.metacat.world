@@ -72,6 +72,7 @@ export default function WearableDao() {
         }, [])
 
     const search = React.useCallback((t) => {
+        console.log(t)
     }, [])
     const changeText = React.useCallback((e) => {
         setText(e.target.value)
