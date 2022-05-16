@@ -1,5 +1,14 @@
 import React from 'react';
-
+import {
+    Scene,
+    PerspectiveCamera,
+    HemisphereLight,
+    DirectionalLight,
+    BoxHelper,
+    WebGLRenderer,
+} from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { VOXLoader, VOXMesh } from 'three/examples/jsm/loaders/VOXLoader.js';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
 import Header from '../../../components/header';
@@ -12,11 +21,111 @@ import api from '../../../lib/api';
 
 export default function Detail({ artwork, artist, id }) {
     const router = useRouter()
-    console.log(artwork, artist, id)
     const [contact, setContact] = React.useState(false);
     const [wxState, setWxState] = React.useState(false);
     const [tabState, setTabState] = React.useState("WearableDao")
     const [text, setText] = React.useState("")
+
+
+    const sceneRef = React.useRef(null);
+    const renderer = React.useRef(null);
+    const animationRef = React.useRef(null);
+    const [intro, setIntro] = React.useState(true);
+
+    const removeIntro = React.useCallback(() => {
+        setIntro(false);
+    }, [null]);
+
+    const render = React.useCallback(() => {
+        if (!renderer.current || !sceneRef.current) {
+            return;
+        }
+        const { targetMesh } = sceneRef.current.userData;
+        if (targetMesh) {
+            targetMesh.rotation.y = Date.now() * 0.001;
+        }
+        const { camera } = sceneRef.current.userData;
+        renderer.current.render(sceneRef.current, camera);
+    }, [null]);
+
+    const animation = React.useCallback(() => {
+        render();
+        animationRef.current = requestAnimationFrame(animation);
+    }, [render]);
+
+
+    React.useEffect(() => {
+        if (!artwork.vox_url) {
+            return;
+        }
+        if (!renderer.current) {
+            const re = new WebGLRenderer({ antialias: true });
+            re.setClearColor(0xffffff, 0);
+            re.setPixelRatio(window.devicePixelRatio);
+            renderer.current = re;
+            const scene = new Scene();
+            const sceneElement = document.getElementById(`webgl${id}`);
+
+            const camera = new PerspectiveCamera(50, 1, 1, 10);
+            camera.position.z = 2;
+            scene.userData.camera = camera;
+
+            const controls = new OrbitControls(scene.userData.camera, re.domElement);
+            controls.minDistance = 1.5;
+            controls.maxDistance = 4;
+            controls.enablePan = false;
+            controls.enableZoom = true;
+            scene.userData.controls = controls;
+
+            scene.add(new HemisphereLight(0xaaaaaa, 0x444444));
+
+            const light = new DirectionalLight(0xffffff, 0.5);
+            light.position.set(1, 1, 1);
+            scene.add(light);
+            sceneRef.current = scene;
+
+            // add one random mesh to each scene
+            const loader = new VOXLoader();
+            loader.load(artwork.vox_url, function (chunks) {
+                for (let i = 0; i < chunks.length; i += 1) {
+                    const chunk = chunks[i];
+                    const mesh = new VOXMesh(chunk);
+                    mesh.name = 'targetMesh';
+                    const boxHelper = new BoxHelper(mesh);
+                    boxHelper.geometry.computeBoundingBox();
+                    const box = boxHelper.geometry.boundingBox;
+                    const maxDiameter = Math.max(
+                        box.max.x - box.min.x,
+                        box.max.y - box.min.y,
+                        box.max.z - box.min.z,
+                    );
+                    mesh.scale.setScalar((1 / maxDiameter) * 1.1); // 0.015
+                    scene.userData.targetMesh = mesh;
+                    //
+                    scene.add(mesh);
+                }
+            });
+            re.setSize(sceneElement.clientWidth, sceneElement.clientHeight, true);
+            sceneElement.appendChild(re.domElement);
+        }
+        animation();
+
+        return () => {
+            if (renderer.current) {
+                // renderer.current.dispose();
+                // renderer.current.forceContextLoss();
+                // renderer.current.context = null;
+                // renderer.current.domElement = null;
+                // renderer.current = null;
+            }
+
+            if (animationRef.current) {
+                cancelAnimationFrame(animationRef.current);
+            }
+        };
+    }, [animation, artwork]);
+
+
 
     const handlerHeader = React.useCallback((label) => {
         if (label === 'Contact Us') {
@@ -40,8 +149,8 @@ export default function Detail({ artwork, artist, id }) {
         window.open(artwork.opensea_url);
     }, []);
 
-    
-    
+
+
     return <div>
         <Header onClick={handlerHeader} text={"WerrableDao"} />
         <div className={style.nav}>
@@ -51,11 +160,38 @@ export default function Detail({ artwork, artist, id }) {
         </div>
         <div className={style.container}>
             <div className={style.card}>
-                <img src="/images/Nomal.png" onClick={toOpensea} />
+                <div
+                    id={`webgl${id}`}
+                    onMouseDown={removeIntro}
+                    className={cn('w-full h-full z-10', style.canvas)}
+                ></div>
             </div>
+            {/* <img src="/images/Nomal.png" onClick={toOpensea} /> */}
         </div>
         <div className={style.detail}>
-            
+            <div className={style.title}>{artwork.name}</div>
+            <div className={style.desc}>{artwork.desc}</div>
+
+            <div className={style.voxel}>
+                <div className={style.t1}>Voxel Artist:</div>
+                <div className={style.t2}>{artist.name}</div>
+                <div className={style.t3} onClick={() => {
+                    window.open(artist.contact.homepage)
+                }}>To check the other artists
+                    <img src="/images/you.png" />
+                </div>
+            </div>
+            <div className={style.contact}>
+                Contact:
+                <div>
+                    <img src="/images/tt.png" onClick={() => {
+                        window.open(artist.contact.twitter)
+                    }} />
+                    <img src="/images/wb.png" onClick={() => {
+                        window.open(artist.contact.weibo)
+                    }} />
+                </div>
+            </div>
         </div>
         {contact ? zhezhao : null}
         {wxState ? <img src="/images/code.jpg" className={cn('w-20 h-20', style.wx)} /> : null}

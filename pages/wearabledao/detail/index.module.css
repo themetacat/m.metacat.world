@@ -51,3 +51,74 @@
   left: 20px;
   top: 20px;
 }
+.voxel {
+  width: 345px;
+  height: 103px;
+  background-color: #061416;
+  margin-bottom: 15px;
+  padding: 15px;
+}
+.voxel .t1 {
+  font-weight: 400;
+  font-size: 14px;
+  color: #666;
+}
+.voxel .t2 {
+  font-weight: 400;
+  font-size: 14px;
+  color: #fff;
+  margin: 10px 0 6px;
+}
+.voxel .t3 {
+  font-weight: 400;
+  font-size: 12px;
+  color: #666;
+  display: flex;
+}
+.voxel .t3 img {
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  margin-left: 8px;
+}
+.detail {
+  padding: 20px 15px;
+  width: 100%;
+  background-color: #060a0b;
+}
+.detail .title {
+  color: #fff;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+}
+.detail .desc {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  color: #999;
+  margin-top: 12px;
+  margin-bottom: 20px;
+}
+.detail .contact {
+  width: 345px;
+  height: 94px;
+  padding: 15px;
+  background: #061416;
+  font-size: 14px;
+  color: #666666;
+}
+.detail .contact div {
+  margin-top: 10px;
+}
+.detail .contact div img {
+  width: 34px;
+  height: 34px;
+  margin-right: 30px;
+}
+.canvas {
+  display: block;
+  touch-action: none;
+  width: 325px;
+  height: 325px;
+}

@@ -29,10 +29,17 @@ export default function WearableDao() {
     const [data, setData] = React.useState([])
 
     const [fixedState, setFixedState] = React.useState(false);
+
+
+    const [allScene, setAllScene] = React.useState([]);
+    const renderer = React.useRef(null);
+    const canvaRef = React.useRef(null);
+    const animationRef = React.useRef(null);
+    const offsetY = React.useRef(null);
+
     const reqData = React.useCallback(
         async () => {
             const result = await getDaoWearableList()
-            console.log(result)
             if (result.code === 100000) {
                 setData(result.data)
             }
@@ -51,18 +58,11 @@ export default function WearableDao() {
     const zhezhao = React.useMemo(() => {
         return <Cantact onClick={changeContactState}></Cantact>;
     }, [contact]);
-
+    
 
     const rander = React.useMemo(() => {
         return (
-            <>
-                {
-                    data.map((card, index) => {
-                        return <Card {...card} key={index} mb={style.mb}></Card>
-                    })
-                }
-            </>
-
+            <Card card={data}></Card>
         )
     }, [data])
 
@@ -72,7 +72,6 @@ export default function WearableDao() {
         }, [])
 
     const search = React.useCallback((t) => {
-        console.log("")
     }, [])
     const changeText = React.useCallback((e) => {
         setText(e.target.value)
