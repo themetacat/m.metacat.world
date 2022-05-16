@@ -165,8 +165,8 @@ export default function Detail({ artwork, artist, id }) {
                     onMouseDown={removeIntro}
                     className={cn('w-full h-full z-10', style.canvas)}
                 ></div>
+                <img src="/images/Nomal.png" onClick={toOpensea} />
             </div>
-            {/* <img src="/images/Nomal.png" onClick={toOpensea} /> */}
         </div>
         <div className={style.detail}>
             <div className={style.title}>{artwork.name}</div>

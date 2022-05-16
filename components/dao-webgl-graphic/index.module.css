@@ -132,3 +132,13 @@
   height: 14px;
   margin-top: 1px;
 }
+.toopensea{
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+}
+.rtv{
+  position: relative;
+}

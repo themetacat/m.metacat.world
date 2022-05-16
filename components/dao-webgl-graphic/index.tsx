@@ -22,8 +22,8 @@ type Contact = {
 type Artwork = {
   name?: string;
   desc?: string;
-  voxUrl?: string;
-  openseaUrl?: string;
+  vox_url?: string;
+  opensea_url?: string;
 };
 
 type DaoCard = {
@@ -121,6 +121,11 @@ export default function DaoWebglCard({ graphicId, initFinish, model }: Props) {
   const toDetail = React.useCallback(() => {
     router.replace(`/wearabledao/detail/${model.id}`)
   }, [])
+
+
+  const toOpensea = React.useCallback(() => {
+    window.open(model.artwork.opensea_url);
+  }, []);
   return (
     <div
       className={cn('z-10 p-4', styles.card)}
@@ -131,16 +136,10 @@ export default function DaoWebglCard({ graphicId, initFinish, model }: Props) {
         triggerModelRotation(false);
       }}
     >
-      <div className="relative">
+      <div className={styles.rtv}>
         <div id={`webgl${graphicId}`} className={styles.graphic}></div>
-        {model.artwork?.openseaUrl ? (
-          <img
-            src="/images/Nomal.png"
-            className={cn('absolute z-20', styles.opese)}
-            onClick={() => {
-              window.open(model.artwork.openseaUrl);
-            }}
-          ></img>
+        {model.artwork?.opensea_url ? (
+          <img src="/images/Nomal.png" onClick={toOpensea} className={styles.toopensea} />
         ) : null}
       </div>
       <div className={styles.detail} onClick={toDetail}>
