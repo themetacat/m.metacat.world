@@ -68,6 +68,16 @@ export default function Header({ onClick, text }: Props) {
             {page[2].label}
           </Link>
         </li>
+        <li className={cn(style.item, pageState === page[3].label ? style.action : null)}
+          onClick={() => {
+            onClick(page[3].label);
+
+          }}>
+          <Link href='/learn'>
+            {page[3].label}
+          </Link>
+
+        </li>
         <li
           className={cn(style.item, pageState === page[4].label ? style.action : null)}
           onClick={() => {

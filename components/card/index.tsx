@@ -39,7 +39,7 @@ export default function Card({
         </div>
         <div className={style.title}>
           <div>{name}</div>
-          <img src="/images/Nomal.png" onClick={toOpensea} />
+          {opensea_url ? <img src="/images/Nomal.png" onClick={toOpensea} /> : null}
         </div>
         <div className={style.detailText}>{description}</div>
       </div>

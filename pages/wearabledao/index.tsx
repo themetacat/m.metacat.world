@@ -95,7 +95,7 @@ export default function WearableDao() {
         return () => document.removeEventListener('scroll', listener);
     }, [fixedState]);
     return (
-        <div>
+        <div className={style.container}>
             <Header onClick={handlerHeader} text={"WerrableDao"} />
 
             <div className={style.nav}>

@@ -44,7 +44,7 @@ export default function Topic({ base_info, parcel_list, traffic_list }) {
         <div>
             <Header onClick={handlerHeader} text={"Builders"}></Header>
             <img src="/images/topic_banner.jpg" className={cn(style.banner, style.mt)} />
-
+        
             <div className={style.info}>
                 <img src={baseInfo.logo_url} className={style.logo} />
                 <div className={style.name}>{baseInfo.name}</div>

@@ -369,7 +369,7 @@ function MyApp() {
   }
    */
   return (
-    <div>
+    <div className={style.container}>
       <Header onClick={handlerHeader} text={headerText}></Header>
 
       <img src="/images/homeBanner.png" className={cn(style.banner, style.mt)} />

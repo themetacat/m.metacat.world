@@ -6,6 +6,7 @@
   margin-top: 12px;
   padding: 0 10px;
   background-color: #0e2b30;
+  width: 76px;
 }
 .container .buttom {
   position: relative;
@@ -35,10 +36,13 @@
   width: 0;
 }
 .container .buttom .w2 {
-  width: 140px;
+  width: 228px;
 }
 .container .buttom .close {
   position: absolute;
   top: 2px;
   right: 0;
+}
+.guodu {
+  width: 268px;
 }

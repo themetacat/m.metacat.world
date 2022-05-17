@@ -11,6 +11,7 @@
 .info {
   padding: 28px 15px 20px;
   background: #0f191b;
+  min-height: 1000px;
   position: relative;
 }
 .info .logo {

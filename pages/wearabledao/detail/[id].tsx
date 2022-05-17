@@ -151,7 +151,7 @@ export default function Detail({ artwork, artist, id }) {
 
 
 
-    return <div>
+    return <div className={style.con}>
         <Header onClick={handlerHeader} text={"WerrableDao"} />
         <div className={style.nav}>
             <div onClick={toWearableDao}>Wearables</div>
