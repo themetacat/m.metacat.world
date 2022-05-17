@@ -13,9 +13,9 @@ function MyApp({ Component, pageProps }) {
 
   React.useEffect(() => {
 
-    var u = navigator.userAgent;
+    const u = navigator.userAgent;
 
-    var result = regex_match.exec(u);
+    const result = regex_match.exec(u);
 
     if (result) {
       document.location.href = "https://www.metacat.world/"
