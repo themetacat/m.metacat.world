@@ -143,7 +143,7 @@ export default function Detail({ artwork, artist, id }) {
     }, [contact]);
 
     const toWearableDao = React.useCallback(() => {
-        router.replace("/wearabledao")
+        router.replace("/wearables")
     }, [])
 
     const toOpensea = React.useCallback(() => {
@@ -153,7 +153,7 @@ export default function Detail({ artwork, artist, id }) {
 
 
     return <div className={style.con}>
-        <Header onClick={handlerHeader} text={"WerrableDao"} />
+        <Header onClick={handlerHeader} text={"Wearables"} />
         <div className={style.nav}>
             <div onClick={toWearableDao}>Wearables</div>
             <img src="/images/you.png" />
@@ -201,7 +201,6 @@ export default function Detail({ artwork, artist, id }) {
 }
 
 export async function getServerSideProps(context) {
-    console.log(context)
     let res = null
     const { id } = context.params;
     if (context.query.type === "pfp") {

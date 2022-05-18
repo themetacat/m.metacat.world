@@ -11,7 +11,7 @@ const page = [
     label: 'Builders',
   },
   {
-    label: 'WerrableDao',
+    label: 'Wearables',
   },
   {
     label: 'Learn',
@@ -64,7 +64,7 @@ export default function Header({ onClick, text }: Props) {
             onClick(page[2].label);
 
           }}>
-          <Link href='/wearabledao'>
+          <Link href='/wearables?type=wearabledao'>
             {page[2].label}
           </Link>
         </li>

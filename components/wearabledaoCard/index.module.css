@@ -3,7 +3,8 @@
 }
 .container .graphicAll {
   width: 355px;
-  height: 1000px;
+  min-height: 1000px;
+  max-height: 100%;
   position: absolute;
 }
 .container .zhanwei {

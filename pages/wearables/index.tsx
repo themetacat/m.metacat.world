@@ -1,7 +1,7 @@
 import React from 'react';
 
 import cn from 'classnames';
-
+import { useRouter, withRouter } from "next/router"
 
 import Header from '../../components/header';
 import Cantact from '../../components/cantact';
@@ -11,6 +11,7 @@ import Card from '../../components/wearabledaoCard'
 import { getDaoWearableList, getOkxWearableList } from '../../service';
 import { req_pfp_list } from "../../service/z_api"
 import style from './index.module.css';
+
 
 const TAB = [
     {
@@ -23,10 +24,12 @@ const TAB = [
     },
 ];
 
-export default function WearableDao() {
+
+function Wearables(r) {
+    const router = useRouter()
     const [contact, setContact] = React.useState(false);
     const [wxState, setWxState] = React.useState(false);
-    const [tabState, setTabState] = React.useState("wearabledao")
+    const [tabState, setTabState] = React.useState(r.router.query.type || "wearabledao")
     const [text, setText] = React.useState("")
     const [data, setData] = React.useState([])
 
@@ -44,7 +47,7 @@ export default function WearableDao() {
                 result = await req_pfp_list()
             }
 
-            if (result.code === 100000) {
+            if (result && result.code === 100000) {
                 setData(result.data)
             }
         }, [tabState])
@@ -73,6 +76,7 @@ export default function WearableDao() {
     const changeTab = React.useCallback(
         (label) => {
             setTabState(label)
+            router.replace(`/wearables?type=${label}`)
         }, [])
 
     const search = React.useCallback((t) => {
@@ -83,8 +87,11 @@ export default function WearableDao() {
     }, [])
 
     React.useEffect(() => {
+        if (r.router.query.type) {
+            setTabState(r.router.query.type)
+        }
         reqData()
-    }, [reqData])
+    }, [reqData, r.router.query.type])
 
 
     React.useEffect(() => {
@@ -98,9 +105,11 @@ export default function WearableDao() {
         document.addEventListener('scroll', listener);
         return () => document.removeEventListener('scroll', listener);
     }, [fixedState]);
+
+
     return (
         <div className={style.container}>
-            <Header onClick={handlerHeader} text={"WerrableDao"} />
+            <Header onClick={handlerHeader} text={"Wearables"} />
 
             <div id="switch" className={cn(style.n, fixedState ? style.fix : null)}>
                 <div className={cn(style.navContainer)}>
@@ -195,3 +204,7 @@ export default function WearableDao() {
         </div >
     )
 }
+
+
+
+export default withRouter(Wearables)

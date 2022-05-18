@@ -13,7 +13,7 @@ type Props = {
     tabState?
 }
 export default function Card({ mb, card, tabState }: Props) {
-    const [allScene, setAllScene] = React.useState([]); 
+    const [allScene, setAllScene] = React.useState([]);
     const renderer = React.useRef(null);
     const canvaRef = React.useRef(null);
     const animationRef = React.useRef(null);
@@ -25,7 +25,9 @@ export default function Card({ mb, card, tabState }: Props) {
         }
         const offset = offY === null ? 800 : offY;
         // async canvas and container window
+        let r = document.getElementById('rander')
         if (window.scrollY > offset) {
+            // console.log(Math.max(document.body.scrollHeight, document.body.offsetHeight))
             canvaRef.current.style.transform = `translateY(${window.scrollY - offset}px)`;
         } else {
             canvaRef.current.style.transform = `translateY(0px)`;
@@ -170,7 +172,7 @@ export default function Card({ mb, card, tabState }: Props) {
             )}
             ref={canvaRef}
         ></canvas>
-        <div className={style.rander}>{renderGraphic}</div>
+        <div className={style.rander} id="rander">{renderGraphic}</div>
         {/* <img src="/images/Nomal.png" onClick={toOpensea} /> */}
         {/* <div className={style.detail} onClick={toDetail}>
             <div className={style.title}>

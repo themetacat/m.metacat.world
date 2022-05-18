@@ -141,6 +141,7 @@
 }
 .container {
   min-height: 1000px;
+  max-height: 100%;
 }
 .n {
   background: #0f191b;
@@ -148,7 +149,7 @@
 }
 .fx {
   position: fixed;
-  top: 97px;
+  top: 96px;
   right: 0;
   left: 0;
   z-index: 999;
