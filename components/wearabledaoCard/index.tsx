@@ -25,7 +25,7 @@ export default function Card({ mb, card, tabState }: Props) {
         }
         const offset = offY === null ? 800 : offY;
         // async canvas and container window
-        let r = document.getElementById('rander')
+        // let r = document.getElementById('rander')
         if (window.scrollY > offset) {
             // console.log(Math.max(document.body.scrollHeight, document.body.offsetHeight))
             canvaRef.current.style.transform = `translateY(${window.scrollY - offset}px)`;
