@@ -25,18 +25,21 @@ export default function Search({ onSearch }: Props) {
       <div className={style.buttom} onClick={changeInput}>
         <img src="/images/search.png" />
         {inputState ? null : <div>Search</div>}
-        <input
-          type="text"
-          id="input"
-          value={text}
-          onInput={changeText}
-          onKeyDown={(e) => {
-            if (e.code === 'Enter') {
-              onSearch(text);
-            }
-          }}
-          className={inputState ? style.w2 : style.w1}
-        />
+        <form action="">
+          <input
+            type="text"
+            id="input"
+            value={text}
+            onInput={changeText}
+            onKeyDown={(e) => {
+              console.log(e.code)
+              if (e.code === 'Enter') {
+                onSearch(text);
+              }
+            }}
+            className={inputState ? style.w2 : style.w1}
+          />
+        </form>
         {text ? (
           <img
             src="/images/close.png"
