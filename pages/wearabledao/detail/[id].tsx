@@ -18,6 +18,7 @@ import ToTop from '../../../components/jump-to-top';
 import style from './index.module.css';
 
 import api from '../../../lib/api';
+import z_api from '../../../lib/z_api';
 
 export default function Detail({ artwork, artist, id }) {
     const router = useRouter()
@@ -200,8 +201,14 @@ export default function Detail({ artwork, artist, id }) {
 }
 
 export async function getServerSideProps(context) {
+    console.log(context)
+    let res = null
     const { id } = context.params;
-    const res = await api.getDaoWearableDetail(id);
+    if (context.query.type === "pfp") {
+        res = await z_api.req_pfp_detail(id)
+    } else {
+        res = await api.getDaoWearableDetail(id);
+    }
     const { artwork, artist } = res.data[0];
     return {
         props: {

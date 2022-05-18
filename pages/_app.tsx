@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useRouter } from "next/router"
+
 import 'leaflet/dist/leaflet.css';
 import '../styles/globals.css';
 import 'tailwindcss/tailwind.css';
@@ -9,7 +11,7 @@ import 'tailwindcss/tailwind.css';
 
 
 function MyApp({ Component, pageProps }) {
-
+  const router = useRouter()
   React.useEffect(() => {
 
     if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
@@ -17,7 +19,7 @@ function MyApp({ Component, pageProps }) {
       // document.location.href = 'https://m-metacat-world-metacat.vercel.app/';
     } else {
       // PC端
-      document.location.href = 'https://www.metacat.world/';
+      document.location.href = `https://www.metacat.world/${router.asPath}`;
     }
 
   }, [])

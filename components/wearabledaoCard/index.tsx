@@ -10,10 +10,10 @@ import style from './index.module.less';
 type Props = {
     mb?: string
     card?
+    tabState?
 }
-export default function Card({ mb, card }: Props) {
-
-    const [allScene, setAllScene] = React.useState([]);
+export default function Card({ mb, card, tabState }: Props) {
+    const [allScene, setAllScene] = React.useState([]); 
     const renderer = React.useRef(null);
     const canvaRef = React.useRef(null);
     const animationRef = React.useRef(null);
@@ -127,6 +127,7 @@ export default function Card({ mb, card }: Props) {
                     model={cd}
                     key={idx}
                     graphicId={`dao-${idx.toString()}`}
+                    tabState={tabState}
                     initFinish={(se) => {
                         scenes.push(se);
                     }}
@@ -135,7 +136,7 @@ export default function Card({ mb, card }: Props) {
         });
         setAllScene(scenes);
         return modelEle;
-    }, [card]);
+    }, [card, tabState]);
     React.useEffect(() => {
         init();
         // return ()=>{

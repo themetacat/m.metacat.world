@@ -725,6 +725,31 @@ class API {
 
     return json;
   }
+
+  public async req_pfp_list() {
+    const search = qs.stringify({}, { addQueryPrefix: true });
+    const url = `${this.url}/wearable/get_pfp_wearable_list${search}`
+
+    const result = await fetch(url, {
+      method: "get",
+      mode: 'cors',
+    });
+    const json = await result.json();
+
+    return json;
+  }
+
+  public async req_pfp_detail(id: string) {
+    const search = qs.stringify({ id }, { addQueryPrefix: true });
+    const url = `${this.url}/wearable/get_pfp_wearable_detail${search}`
+    const result = await fetch(url, {
+      method: "get",
+      mode: 'cors',
+    });
+    const json = await result.json();
+
+    return json;
+  }
 }
 
 export default new API('https://api.metacat.world/api/v1');

@@ -36,11 +36,13 @@ interface Props {
   graphicId?: string;
   initFinish?: (se) => void;
   model?: DaoCard;
+  tabState?
 }
 
 
 
-export default function DaoWebglCard({ graphicId, initFinish, model }: Props) {
+export default function DaoWebglCard({ graphicId, initFinish, model, tabState }: Props) {
+  console.log(tabState)
   const router = useRouter();
   const sceneRef = React.useRef(null);
 
@@ -119,8 +121,9 @@ export default function DaoWebglCard({ graphicId, initFinish, model }: Props) {
 
 
   const toDetail = React.useCallback(() => {
-    router.replace(`/wearabledao/detail/${model.id}`)
-  }, [])
+
+    router.replace(`/wearabledao/detail/${model.id}?type=${tabState}`)
+  }, [tabState])
 
 
   const toOpensea = React.useCallback(() => {

@@ -9,41 +9,45 @@ import ToTop from '../../components/jump-to-top';
 import Tab from '../../components/tab';
 import Card from '../../components/wearabledaoCard'
 import { getDaoWearableList, getOkxWearableList } from '../../service';
-
+import { req_pfp_list } from "../../service/z_api"
 import style from './index.module.css';
 
-// const TAB = [
-//     {
-//         label: "WearableDao"
-//     },
-//     // {
-//     //     label: "Wearables for OKX"
-//     // }
-// ]
+const TAB = [
+    {
+        label: 'WearableDao',
+        type: 'wearabledao',
+    },
+    {
+        label: 'PFP',
+        type: 'pfp',
+    },
+];
 
 export default function WearableDao() {
     const [contact, setContact] = React.useState(false);
     const [wxState, setWxState] = React.useState(false);
-    const [tabState, setTabState] = React.useState("WearableDao")
+    const [tabState, setTabState] = React.useState("wearabledao")
     const [text, setText] = React.useState("")
     const [data, setData] = React.useState([])
 
     const [fixedState, setFixedState] = React.useState(false);
 
 
-    const [allScene, setAllScene] = React.useState([]);
-    const renderer = React.useRef(null);
-    const canvaRef = React.useRef(null);
-    const animationRef = React.useRef(null);
-    const offsetY = React.useRef(null);
 
     const reqData = React.useCallback(
         async () => {
-            const result = await getDaoWearableList()
+            let result = null
+            if (tabState === "wearabledao") {
+                result = await getDaoWearableList()
+            }
+            if (tabState === "pfp") {
+                result = await req_pfp_list()
+            }
+
             if (result.code === 100000) {
                 setData(result.data)
             }
-        }, [])
+        }, [tabState])
 
     const handlerHeader = React.useCallback((label) => {
         if (label === 'Contact Us') {
@@ -58,13 +62,13 @@ export default function WearableDao() {
     const zhezhao = React.useMemo(() => {
         return <Cantact onClick={changeContactState}></Cantact>;
     }, [contact]);
-    
+
 
     const rander = React.useMemo(() => {
         return (
-            <Card card={data}></Card>
+            <Card card={data} tabState={tabState}></Card>
         )
-    }, [data])
+    }, [data, tabState])
 
     const changeTab = React.useCallback(
         (label) => {
@@ -98,22 +102,25 @@ export default function WearableDao() {
         <div className={style.container}>
             <Header onClick={handlerHeader} text={"WerrableDao"} />
 
-            <div className={style.nav}>
-                {/* <div className={style.tab}>
+            <div id="switch" className={cn(style.n, fixedState ? style.fix : null)}>
+                <div className={cn(style.navContainer)}>
                     {TAB.map((item) => {
                         return (
                             <Tab
                                 key={item.label}
-                                action={tabState === item.label}
+                                action={tabState === item.type}
                                 label={item.label}
                                 onClick={() => {
-                                    changeTab(item.label);
+                                    changeTab(item.type);
                                 }}
-                                color={style.tabColor}
                             />
                         );
                     })}
-                </div> */}
+                    <div className={style.border}></div>
+                </div>
+            </div>
+
+            {tabState === "wearabledao" ? <div className={style.nav}>
                 <img src="/images/group.png" />
                 <div className={style.title}>
                     WearableDao
@@ -137,8 +144,33 @@ export default function WearableDao() {
                 <div className={style.text}>
                     WearableDao was co-founded by MetaCat, MetaEstate and MetaLandscape to design and produce Wearables in Metaverse.
                 </div>
-            </div>
-            <div className={(cn(style.search, fixedState ? style.fix : null))} id="switch">
+            </div> : null}
+            {tabState === "pfp" ? <div className={style.nav}>
+                <img src="/images/pfp.jpg" />
+                <div className={style.title}>
+                    PFP
+                </div>
+                <div className={style.td}>
+                    <a href="https://www.cryptovoxels.com/play?coords=N@409E,630N">
+                        <div className={style.item}>
+                            <img src='/images/icon/home.png' />
+                            <div>Home</div>
+                        </div>
+                    </a>
+                    <div className={style.shuxian}>
+                    </div>
+                    <a href="https://twitter.com/WearableDao">
+                        <div className={style.item}>
+                            <img src="/images/topic_twitter.png" />
+                            <div>Twitter</div>
+                        </div>
+                    </a>
+                </div>
+                <div className={style.text}>
+                    The PFP Metaverse Carnival, co-hosted by WearableDao, MetaEstate, MetaCat, MetaLandscape, and TingDao, will be grandly launched on May 20! The most interesting part of this event is that everyone can make their favorite NFTs into Wearables and wear them by participating in the event, so that NFTs can "live".
+                </div>
+            </div> : null}
+            <div className={(cn(style.search, fixedState ? style.fx : null))} id="switch">
                 <div className={style.input}>
                     <img src="/images/search.png" className={style.searchImg} />
                     <input type="text" placeholder="Search" value={text} onInput={changeText} />
