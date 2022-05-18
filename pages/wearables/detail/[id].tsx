@@ -156,7 +156,7 @@ export default function Detail({ artwork, artist, id }) {
     return <div className={style.con}>
         <Header onClick={handlerHeader} text={"Wearables"} />
         <div className={style.nav}>
-            <div onClick={toWearableDao}>Wearables</div>
+            <div onClick={toWearableDao}>{router.query.type === "pfp" ? "PFP" : "WearableDao"}</div>
             <img src="/images/you.png" />
             <div className={style.name}>{artwork.name}</div>
         </div>

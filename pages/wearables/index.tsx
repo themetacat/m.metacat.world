@@ -39,14 +39,13 @@ function Wearables(r) {
 
     const reqData = React.useCallback(
         async () => {
-            console.log(tabState)
             let result = null
             if (tabState === "wearabledao" && r.router.query.type === "wearabledao") {
                 result = await getDaoWearableList()
-            } else {
+            }
+            if(tabState === "pfp" && r.router.query.type === "pfp") {
                 result = await req_pfp_list()
             }
-           
 
             if (result && result.code === 100000) {
                 setData(result.data)

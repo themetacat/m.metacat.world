@@ -42,7 +42,6 @@ interface Props {
 
 
 export default function DaoWebglCard({ graphicId, initFinish, model, tabState }: Props) {
-  console.log(tabState)
   const router = useRouter();
   const sceneRef = React.useRef(null);
 
