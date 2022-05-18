@@ -143,8 +143,9 @@ export default function Detail({ artwork, artist, id }) {
     }, [contact]);
 
     const toWearableDao = React.useCallback(() => {
-        router.replace("/wearables")
-    }, [])
+        router.replace(`/wearables?type=${router.query.type}`)
+
+    }, [router.query.type])
 
     const toOpensea = React.useCallback(() => {
         window.open(artwork.opensea_url);
