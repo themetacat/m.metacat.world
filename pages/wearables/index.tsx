@@ -41,7 +41,8 @@ function Wearables(r) {
             let result = null
             if (tabState === "wearabledao") {
                 result = await getDaoWearableList()
-            } else if (tabState === "pfp") {
+            }
+            if (tabState === "pfp") {
                 result = await req_pfp_list()
             }
             if (result && result.code === 100000) {
@@ -83,8 +84,9 @@ function Wearables(r) {
     const changeTab = React.useCallback(
         (label) => {
             setTabState(label)
+            reqData();
             router.replace(`/wearables?type=${label}`)
-        }, [])
+        }, [reqData])
 
     const search = React.useCallback((t) => {
         console.log(t)
@@ -94,7 +96,7 @@ function Wearables(r) {
     }, [])
 
     React.useEffect(() => {
-       
+
         reqData()
     }, [reqData])
 
