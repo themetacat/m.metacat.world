@@ -2,7 +2,7 @@ import React from 'react';
 
 import cn from 'classnames';
 import { useRouter, withRouter } from "next/router"
-
+import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from '../../components/header';
 import Cantact from '../../components/cantact';
 import ToTop from '../../components/jump-to-top';
@@ -32,7 +32,6 @@ function Wearables(r) {
     const [tabState, setTabState] = React.useState(r.router.query.type || "wearabledao")
     const [text, setText] = React.useState("")
     const [data, setData] = React.useState([])
-
     const [fixedState, setFixedState] = React.useState(false);
 
 
@@ -42,15 +41,16 @@ function Wearables(r) {
             let result = null
             if (tabState === "wearabledao" && r.router.query.type === "wearabledao") {
                 result = await getDaoWearableList()
-            }
-            if(tabState === "pfp" && r.router.query.type === "pfp") {
+            } else if (tabState === "pfp" && r.router.query.type === "pfp") {
                 result = await req_pfp_list()
+            } else {
+                result = await getDaoWearableList()
             }
 
             if (result && result.code === 100000) {
                 setData(result.data)
             }
-        }, [tabState])
+        }, [tabState, r.router.query.type])
 
     const handlerHeader = React.useCallback((label) => {
         if (label === 'Contact Us') {
@@ -66,12 +66,22 @@ function Wearables(r) {
         return <Cantact onClick={changeContactState}></Cantact>;
     }, [contact]);
 
+    const scrollLoading = React.useCallback(() => {
+        console.log(1)
+    }, [])
 
     const rander = React.useMemo(() => {
         return (
-            <Card card={data} tabState={tabState}></Card>
+            <InfiniteScroll
+                dataLength={data.length}
+                hasMore={true}
+                next={scrollLoading}
+                loader={<div className={style.bottom}></div>}
+            >
+                <Card card={data} tabState={tabState} ></Card>
+            </InfiniteScroll >
         )
-    }, [data, tabState])
+    }, [data, tabState, scrollLoading])
 
     const changeTab = React.useCallback(
         (label) => {
@@ -198,6 +208,7 @@ function Wearables(r) {
             <div className={style.cardList}>
                 {rander}
             </div>
+
             {contact ? zhezhao : null}
             {wxState ? <img src="/images/code.jpg" className={cn('w-20 h-20', style.wx)} /> : null}
             <ToTop></ToTop>

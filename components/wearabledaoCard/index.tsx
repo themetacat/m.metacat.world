@@ -173,6 +173,7 @@ export default function Card({ mb, card, tabState }: Props) {
             ref={canvaRef}
         ></canvas>
         <div className={style.rander} id="rander">{renderGraphic}</div>
+
         {/* <img src="/images/Nomal.png" onClick={toOpensea} /> */}
         {/* <div className={style.detail} onClick={toDetail}>
             <div className={style.title}>
