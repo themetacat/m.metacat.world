@@ -39,18 +39,15 @@ function Wearables(r) {
     const reqData = React.useCallback(
         async () => {
             let result = null
-            if (tabState === "wearabledao" && r.router.query.type === "wearabledao") {
+            if (tabState === "wearabledao") {
                 result = await getDaoWearableList()
-            } else if (tabState === "pfp" && r.router.query.type === "pfp") {
+            } else if (tabState === "pfp") {
                 result = await req_pfp_list()
-            } else {
-                result = await getDaoWearableList()
             }
-
             if (result && result.code === 100000) {
                 setData(result.data)
             }
-        }, [tabState, r.router.query.type])
+        }, [tabState])
 
     const handlerHeader = React.useCallback((label) => {
         if (label === 'Contact Us') {
