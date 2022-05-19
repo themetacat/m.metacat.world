@@ -13,6 +13,7 @@ type Props = {
   parcel_page_url: string;
   type: string;
   world: string
+  Home?: boolean
 };
 
 export default function Card({
@@ -23,7 +24,8 @@ export default function Card({
   opensea_url,
   parcel_page_url,
   type,
-  world
+  world,
+  Home
 }: Props) {
   const toParcel = React.useCallback(() => {
     window.open(parcel_page_url);
@@ -37,7 +39,7 @@ export default function Card({
       <div className={style.container2}>
         <div className={style.banner}>
           <img src={cover_img_url} className={style.banner}></img>
-          <div className={style.type}>{world}</div>
+          {Home ? null : <div className={style.type}>{world}</div>}
         </div>
         <div className={style.title}>
           <div>{name}</div>

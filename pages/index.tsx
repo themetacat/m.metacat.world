@@ -248,7 +248,7 @@ function MyApp() {
             loader={<Footer length={data.length} />}
           >
             {data.map((item) => {
-              return <Card mt={style.margintop} {...item} key={uuid()} />;
+              return <Card mt={style.margintop} {...item} key={uuid()} Home={true} />;
             })}
           </InfiniteScroll>
         </div>
