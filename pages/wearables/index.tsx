@@ -96,9 +96,7 @@ function Wearables(r) {
     }, [])
 
     React.useEffect(() => {
-        if (r.router.query.type) {
-            setTabState(r.router.query.type)
-        }
+        
         reqData()
     }, [reqData])
 
