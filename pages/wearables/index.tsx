@@ -65,7 +65,7 @@ function Wearables(r) {
     }, [contact]);
 
     const scrollLoading = React.useCallback(() => {
-        console.log(1)
+        console.log("")
     }, [])
 
     const rander = React.useMemo(() => {
@@ -89,7 +89,7 @@ function Wearables(r) {
         }, [reqData])
 
     const search = React.useCallback((t) => {
-        console.log(t)
+        console.log("")
     }, [])
     const changeText = React.useCallback((e) => {
         setText(e.target.value)

@@ -32,7 +32,6 @@ export default function Search({ onSearch }: Props) {
             value={text}
             onInput={changeText}
             onKeyDown={(e) => {
-              console.log(e.code)
               if (e.code === 'Enter') {
                 onSearch(text);
               }

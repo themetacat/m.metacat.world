@@ -34,7 +34,6 @@ export default function Builders() {
     const reqData = React.useCallback(
         async () => {
             const result = await getBuilderList(page, count)
-            console.log(result)
             if (result.code === 100000) {
                 setData(result.data.list)
             }

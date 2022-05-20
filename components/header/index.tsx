@@ -73,7 +73,7 @@ export default function Header({ onClick, text }: Props) {
             onClick(page[3].label);
 
           }}>
-          <Link href='/learn'>
+          <Link href='/learn?type=articles'>
             {page[3].label}
           </Link>
 

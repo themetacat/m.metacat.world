@@ -1,5 +1,7 @@
 import React from 'react';
 import cn from "classnames"
+import { useRouter } from "next/router"
+
 import style from "./index.module.css";
 
 import Header from '../../components/header';
@@ -13,10 +15,12 @@ import { req_learn_article_list, req_learn_report_list } from '../../service/z_a
 
 const Tab = [
     {
-        label: "Articles"
+        label: "Articles",
+        type: "articles"
     },
     {
-        label: "MetaCat Report"
+        label: "MetaCat Report",
+        type: "report"
     }
 ]
 
@@ -32,6 +36,7 @@ const ps = [
 ];
 
 export default function Learn() {
+    const router = useRouter()
     const [contact, setContact] = React.useState(false);
     const [wxState, setWxState] = React.useState(false);
 
@@ -78,8 +83,9 @@ export default function Learn() {
         return <Cantact onClick={changeContactState}></Cantact>;
     }, [contact]);
 
-    const changeTab = React.useCallback((i) => {
+    const changeTab = React.useCallback((i, t) => {
         setTabState(i)
+        router.replace(`/learn?type=${t}`)
     }, [])
 
     const onSearchHandler = React.useCallback(
@@ -91,7 +97,6 @@ export default function Learn() {
                         item.desc.toLocaleLowerCase().includes(text.toLocaleLowerCase())
                     );
                 });
-                console.log(d)
                 setDataSource(d);
             } else {
                 requestData(page, count, langState, tabState);
@@ -137,7 +142,7 @@ export default function Learn() {
                 <div className={style.bg}></div>
                 {Tab.map((item, idx) => {
                     return <div className={cn(style.item, tabState === item.label ? style.action : null)} key={idx} onClick={() => {
-                        changeTab(item.label)
+                        changeTab(item.label, item.type)
                     }}>
                         {item.label}
                     </div>

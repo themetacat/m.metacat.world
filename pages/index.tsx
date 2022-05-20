@@ -110,7 +110,7 @@ function MyApp() {
 
   const reqCvParcelList = React.useCallback(
     async (state = false) => {
-      const result = await getCVParcelList(1, 50, null, type);
+      const result = await getCVParcelList(1, 50, null, state ? "all" : type);
       if (result.code === 100000) {
         setData(result.data.parcel_list);
         if (typeTotal.length === 0 || state) {
@@ -122,7 +122,7 @@ function MyApp() {
         }
       }
     },
-    [typeTotal],
+    [typeTotal, type],
   );
 
   const reqCvEventList = React.useCallback(
@@ -138,7 +138,7 @@ function MyApp() {
 
   const reqDclParcelList = React.useCallback(
     async (state = false,) => {
-      const result = await getDCLParcelList(1, 50, null, type);
+      const result = await getDCLParcelList(1, 50, null, state ? "all" : type);
       if (result.code === 100000) {
         setData(result.data.parcel_list);
         if (typeTotal.length === 0 || state) {
@@ -150,7 +150,7 @@ function MyApp() {
         }
       }
     },
-    [typeTotal],
+    [typeTotal, type],
   );
 
   const reqDclEventList = React.useCallback(
@@ -167,6 +167,7 @@ function MyApp() {
 
   const changeTab = React.useCallback(
     (t) => {
+      setType('all');
       setTabState(t);
       if (t === 'cryptovoxels' && twoNavState === 'Parcel') {
         reqCvParcelList(true);
@@ -176,7 +177,6 @@ function MyApp() {
         reqDclParcelList(true);
         setPage(1)
       }
-      setType('all');
     },
     [reqDclParcelList, reqCvParcelList],
   );
@@ -299,6 +299,7 @@ function MyApp() {
   );
 
   const changeClassify = React.useCallback((value) => {
+
     setType(value);
   }, []);
 
@@ -315,7 +316,7 @@ function MyApp() {
     if (tabState === 'decentraland' && twoNavState === 'Events') {
       reqDclEventList();
     }
-  }, [twoNavState, reqCvParcelList, reqDclParcelList, reqCvEventList, reqDclEventList]);
+  }, [twoNavState, type, reqCvParcelList, reqDclParcelList, reqCvEventList, reqDclEventList]);
 
   // React.useEffect(() => {
 

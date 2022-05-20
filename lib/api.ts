@@ -19,10 +19,9 @@ class API {
   ): Promise<any> {
     const search = qs.stringify({ page, count, query, type }, { addQueryPrefix: true });
     const url = `${this.url}/get_cv_parcel_list${search}`;
-
     const res = await fetch(url);
-    const json = await res.json();
 
+    const json = await res.json();
     return json;
   }
 
