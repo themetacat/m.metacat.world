@@ -299,7 +299,6 @@ function MyApp() {
   );
 
   const changeClassify = React.useCallback((value) => {
-
     setType(value);
   }, []);
 
@@ -316,7 +315,7 @@ function MyApp() {
     if (tabState === 'decentraland' && twoNavState === 'Events') {
       reqDclEventList();
     }
-  }, [twoNavState, type, reqCvParcelList, reqDclParcelList, reqCvEventList, reqDclEventList]);
+  }, [twoNavState, reqCvParcelList, reqDclParcelList, reqCvEventList, reqDclEventList]);
 
   // React.useEffect(() => {
 
