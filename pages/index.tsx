@@ -375,20 +375,18 @@ function MyApp() {
 
       <div id="switch" className={cn(style.nav, fixedState ? style.fix : null)}>
         <div className={cn(style.navContainer)}>
-          {TAB.map((item) => {
+          <div className={style.bg}></div>
+          {TAB.map((item, idx) => {
             return (
-              <Tab
-                key={item.label}
-                action={tabState === item.type}
-                icon={item.icon}
-                label={item.label}
-                onClick={() => {
-                  changeTab(item.type);
-                }}
-              />
+              <div className={cn(style.item, tabState === item.type ? style.action : null)} key={idx} onClick={() => {
+                changeTab(item.type)
+              }}>
+                <img src={`${item.icon}`}/>
+                {item.label}
+              </div>
             );
           })}
-          <div className={style.border}></div>
+
         </div>
 
         <div className={cn(style.twoNavContainer)}>
