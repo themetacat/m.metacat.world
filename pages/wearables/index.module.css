@@ -44,6 +44,7 @@
   width: 16px;
   height: 16px;
   display: block;
+  border-radius: 0;
   margin-top: 5px;
   margin-right: 5px;
 }
@@ -154,7 +155,7 @@
 }
 .fx {
   position: fixed;
-  top: 96px;
+  top: 47px;
   right: 0;
   left: 0;
   z-index: 999;

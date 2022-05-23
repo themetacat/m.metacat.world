@@ -118,10 +118,10 @@ function Wearables(r) {
         <div className={style.container}>
             <Header onClick={handlerHeader} text={"Wearables"} />
 
-            <div id="switch" className={cn(style.n, fixedState ? style.fix : null)}>
+            <div id="switch" className={cn(style.n,)}>
                 <div className={cn(style.navContainer)}>
                     <div className={style.bg}></div>
-                    {TAB.map((item,idx) => {
+                    {TAB.map((item, idx) => {
                         return (
                             <div className={cn(style.item, tabState === item.type ? style.action : null)} key={idx} onClick={() => {
                                 changeTab(item.type)
@@ -167,7 +167,7 @@ function Wearables(r) {
                 <div className={style.td}>
                     <a href="https://www.cryptovoxels.com/play?coords=N@409E,630N">
                         <div className={style.item}>
-                            <img src='/images/pfp_home.png' />
+                            <img src='/images/pfp_home.svg' />
                             <div>Home</div>
                         </div>
                     </a>
