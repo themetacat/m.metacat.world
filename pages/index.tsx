@@ -169,16 +169,15 @@ function MyApp() {
     (t) => {
       setType('all');
       setTabState(t);
+      setPage(1)
       if (t === 'cryptovoxels' && twoNavState === 'Parcel') {
         reqCvParcelList(true);
-        setPage(1)
       }
       if (t === 'decentraland' && twoNavState === 'Parcel') {
         reqDclParcelList(true);
-        setPage(1)
       }
     },
-    [reqDclParcelList, reqCvParcelList],
+    [reqDclParcelList, reqCvParcelList, twoNavState],
   );
 
   React.useEffect(() => {
@@ -428,7 +427,7 @@ function MyApp() {
               );
             })}
             <img
-              src={classsifyState ? '/images/Frame-down.png' : '/images/Frame-up.png'}
+              src={classsifyState ? '/images/Frame-up.png' : '/images/Frame-down.png'}
               onClick={changeClassifyState}
             />
           </div>

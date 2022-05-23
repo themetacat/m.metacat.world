@@ -71,10 +71,11 @@
 .classify .item {
   display: flex;
   box-sizing: border-box;
-  height: 22px;
+  height: 33px;
   margin-right: 12px;
-  padding: 4px 10px 0;
+  padding: 0 10px ;
   font-size: 12px;
+  line-height: 33px;
 }
 .classify .item div {
   margin-right: 5px;

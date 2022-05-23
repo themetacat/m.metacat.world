@@ -169,7 +169,7 @@ function Wearables(r) {
                 <div className={style.td}>
                     <a href="https://www.cryptovoxels.com/play?coords=N@409E,630N">
                         <div className={style.item}>
-                            <img src='/images/icon/home.png' />
+                            <img src='/images/pfp_home.png' />
                             <div>Home</div>
                         </div>
                     </a>
