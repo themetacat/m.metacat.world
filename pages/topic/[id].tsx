@@ -17,12 +17,13 @@ export default function Topic({ base_info, parcel_list, traffic_list }) {
     const [baseInfo, setBaseInfo] = React.useState(base_info);
     const [parcelList, setParcelList] = React.useState(parcel_list);
     const [trafficList, setTrafficList] = React.useState(traffic_list);
+    const [nav, setNav] = React.useState(null);
 
-
-    const handlerHeader = React.useCallback((label) => {
+    const handlerHeader = React.useCallback((label, t) => {
         if (label === 'Contact Us') {
             setContact(true);
         }
+        setNav(t)
     }, []);
 
     const changeContactState = React.useCallback((state, wxstate) => {
@@ -37,14 +38,22 @@ export default function Topic({ base_info, parcel_list, traffic_list }) {
         [null],
     );
 
+
+    React.useEffect(() => {
+        setNav(true)
+        window.addEventListener("scroll", function () {
+            setNav(true)
+        })
+    }, [])
+
     const zhezhao = React.useMemo(() => {
         return <Cantact onClick={changeContactState}></Cantact>;
     }, [contact]);
     return (
         <div>
-            <Header onClick={handlerHeader} text={"Builders"}></Header>
+            <Header onClick={handlerHeader} text={"Builders"} nav={nav}></Header>
             <img src="/images/topic_banner.jpg" className={cn(style.banner, style.mt)} />
-        
+
             <div className={style.info}>
                 <img src={baseInfo.logo_url} className={style.logo} />
                 <div className={style.name}>{baseInfo.name}</div>

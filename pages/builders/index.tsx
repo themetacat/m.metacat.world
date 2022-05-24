@@ -16,12 +16,14 @@ export default function Builders() {
     const [page, setPage] = React.useState(1)
     const [count, setCount] = React.useState(50)
     const [data, setData] = React.useState([])
+    const [nav, setNav] = React.useState(null);
 
-    const handlerHeader = React.useCallback((label) => {
+    const handlerHeader = React.useCallback((label, t) => {
         setHeaderText(label);
         if (label === 'Contact Us') {
             setContact(true);
         }
+        setNav(t)
     }, []);
     const changeContactState = React.useCallback((state, wxstate) => {
         setContact(state);
@@ -52,9 +54,18 @@ export default function Builders() {
     React.useEffect(() => {
         reqData()
     }, [reqData])
+
+
+
+    React.useEffect(() => {
+        setNav(true)
+        window.addEventListener("scroll", function () {
+            setNav(true)
+        })
+    }, [])
     return (
         <div className={style.container}>
-            <Header onClick={handlerHeader} text={'Builders'}></Header>
+            <Header onClick={handlerHeader} text={'Builders'} nav={nav}></Header>
             <img src="/images/builders_banner.png" className={cn(style.banner, style.mt)} />
 
             <div>

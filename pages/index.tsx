@@ -60,6 +60,8 @@ function MyApp() {
 
   const [footerState, setFooterState] = React.useState(false);
 
+  const [nav, setNav] = React.useState(null);
+
   const changeTwoNav = React.useCallback((label) => {
     setTwoNavState(label);
     setPage(1)
@@ -93,11 +95,12 @@ function MyApp() {
   // scroll()
   // }, [scroll])
 
-  const handlerHeader = React.useCallback((label) => {
+  const handlerHeader = React.useCallback((label, t = false) => {
     setHeaderText(label);
     if (label === 'Contact Us') {
       setContact(true);
     }
+    setNav(t)
   }, []);
   const changeContactState = React.useCallback((state, wxstate) => {
     setContact(state);
@@ -316,60 +319,17 @@ function MyApp() {
     }
   }, [twoNavState, reqCvParcelList, reqDclParcelList, reqCvEventList, reqDclEventList]);
 
-  // React.useEffect(() => {
 
-  //   window.addEventListener("scroll", function () {
-  //     //真实内容的高度
-  //     let pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight);
-  //     //视窗的高度
-  //     let viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
-  //     //隐藏的高度
-  //     let scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-  //     //判断加载
-  //     console.log(pageHeight, viewportHeight, scrollHeight)
-  //     if (pageHeight - viewportHeight - scrollHeight <= 0) {
-  //       // setFooterState(true)
-  //       // if (tabState === "cryptovoxels" && twoNavState === "Parcel") {
-  //       //   reqCvParcelList()
-  //       // }
-  //       // if (tabState === "cryptovoxels" && twoNavState === "Events") {
-  //       //   reqCvEventList()
-  //       // }
-  //       // if (tabState === "decentraland" && twoNavState === "Parcel") {
-  //       //   reqDclParcelList()
-  //       // }
-  //       // if (tabState === "decentraland" && twoNavState === "Events") {
-  //       //   reqDclEventList()
-  //       // }
-  //       console.log(1)
-  //       setFooterState(false)
-  //     }
-  //   })
-  // }, [tabState, twoNavState, page])
+  React.useEffect(() => {
+    setNav(true)
+    window.addEventListener("scroll", function () {
+      setNav(true)
+    })
+  }, [])
 
-  /**
-   * 
-   * function scrollFunc(){
-     $("#container").scroll(function(){
-        var $this =$(this),
-        viewH =$(this).height(),//可见高度
-        contentH =$(this).get(0).scrollHeight,//内容高度
-        scrollTop =$(this).scrollTop();//滚动高度
-        if(contentH = viewH + scrollTop) { //当滚动到底部时，
-  
-        }
-        if(contentH - viewH - scrollTop <= 100) { //当滚动到距离底部100px时,
-  
-        }
-        if(scrollTop/(contentH -viewH) >= 0.95){ //当滚动到距离底部5%时
-        // 这里加载数据..
-        }
-     });
-  }
-   */
   return (
-    <div className={style.container}>
-      <Header onClick={handlerHeader} text={headerText}></Header>
+    <div className={style.container} >
+      <Header onClick={handlerHeader} text={headerText} nav={nav}></Header>
 
       <img src="/images/homeBanner.png" className={cn(style.banner, style.mt)} />
 
@@ -381,7 +341,7 @@ function MyApp() {
               <div className={cn(style.item, tabState === item.type ? style.action : null)} key={idx} onClick={() => {
                 changeTab(item.type)
               }}>
-                <img src={`${item.icon}`}/>
+                <img src={`${item.icon}`} />
                 {item.label}
               </div>
             );

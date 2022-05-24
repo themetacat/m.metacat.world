@@ -24,9 +24,10 @@ const page = [
 type Props = {
   onClick?;
   text: string;
+  nav?
 };
 
-export default function Header({ onClick, text }: Props) {
+export default function Header({ onClick, text, nav }: Props) {
   const [navState, setNavState] = React.useState(false);
   const [pageState, setPageState] = React.useState(text || page[0].label);
 
@@ -53,7 +54,6 @@ export default function Header({ onClick, text }: Props) {
         <li className={cn(style.item, pageState === page[1].label ? style.action : null)}
           onClick={() => {
             onClick(page[1].label);
-
           }}>
           <Link href='/builders'>
             {page[1].label}
@@ -81,7 +81,7 @@ export default function Header({ onClick, text }: Props) {
         <li
           className={cn(style.item, pageState === page[4].label ? style.action : null)}
           onClick={() => {
-            onClick(page[4].label);
+            onClick(page[4].label, true);
           }}
         >
           {page[4].label}
@@ -97,6 +97,10 @@ export default function Header({ onClick, text }: Props) {
     //     }} className={cn(style.item, pageState === item.label ? style.action : null)}>{item.label}</li>
     // })
   }, []);
+
+  React.useEffect(() => {
+    setNavState(!nav)
+  }, [nav])
   return (
     <div className={style.container}>
       <div className={style.header_left}>
@@ -105,9 +109,11 @@ export default function Header({ onClick, text }: Props) {
         </Link>
         <div className={style.title}>METACAT</div>
       </div>
-      <div className={style.pr}>
+      <div className={style.pr} onClick={() => {
+        onClick(null, false)
+      }}>
         <img src="/images/caidan.png" className={style.header_right} onClick={changePage} />
-        {navState ? <ul className={style.pageList}>{rander}</ul> : null}
+        {navState && !nav ? <ul className={style.pageList}>{rander}</ul> : null}
       </div>
     </div>
   );

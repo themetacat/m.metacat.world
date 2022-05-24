@@ -34,6 +34,7 @@ function Wearables(r) {
     const [data, setData] = React.useState([])
     const [fixedState, setFixedState] = React.useState(false);
 
+    const [nav, setNav] = React.useState(null);
 
 
     const reqData = React.useCallback(
@@ -50,10 +51,11 @@ function Wearables(r) {
             }
         }, [tabState])
 
-    const handlerHeader = React.useCallback((label) => {
+    const handlerHeader = React.useCallback((label, t = false) => {
         if (label === 'Contact Us') {
             setContact(true);
         }
+        setNav(t)
     }, []);
 
     const changeContactState = React.useCallback((state, wxstate) => {
@@ -114,9 +116,17 @@ function Wearables(r) {
     }, [fixedState]);
 
 
+
+    React.useEffect(() => {
+        setNav(true)
+        window.addEventListener("scroll", function () {
+            setNav(true)
+        })
+    }, [])
+
     return (
         <div className={style.container}>
-            <Header onClick={handlerHeader} text={"Wearables"} />
+            <Header onClick={handlerHeader} text={"Wearables"} nav={nav} />
 
             <div id="switch" className={cn(style.n,)}>
                 <div className={cn(style.navContainer)}>

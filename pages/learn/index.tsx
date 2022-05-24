@@ -52,10 +52,13 @@ export default function Learn() {
     const [count, setCount] = React.useState(50);
     const [searchText, setSearchText] = React.useState('');
 
-    const handlerHeader = React.useCallback((label) => {
+    const [nav, setNav] = React.useState(null);
+
+    const handlerHeader = React.useCallback((label, t) => {
         if (label === 'Contact Us') {
             setContact(true);
         }
+        setNav(t)
     }, []);
 
     const requestData = React.useCallback(
@@ -134,9 +137,18 @@ export default function Learn() {
     React.useEffect(() => {
         requestData(page, count, langState, tabState)
     }, [tabState, langState, page, count])
+
+
+    React.useEffect(() => {
+        setNav(true)
+        window.addEventListener("scroll", function () {
+            setNav(true)
+        })
+    }, [])
+    
     return (
         <div>
-            <Header onClick={handlerHeader} text={"Learn"}></Header>
+            <Header onClick={handlerHeader} text={"Learn"} nav={nav}></Header>
             <img src="/images/learn_banner.png" className={cn(style.banner, style.mt)} />
             <div className={style.nav}>
                 <div className={style.bg}></div>
