@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { v4 as uuid } from 'uuid';
 import cn from 'classnames';
 import { WebGLRenderer } from 'three';
 import DaoWebglCard from '../dao-webgl-graphic';
@@ -127,7 +127,7 @@ export default function Card({ mb, card, tabState }: Props) {
             return (
                 <DaoWebglCard
                     model={cd}
-                    key={idx}
+                    key={uuid()}
                     graphicId={`dao-${idx.toString()}`}
                     tabState={tabState}
                     initFinish={(se) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from "classnames"
 import { useRouter } from "next/router"
-
+import { v4 as uuid } from 'uuid';
 import style from "./index.module.css";
 
 import Header from '../../components/header';
@@ -129,7 +129,7 @@ export default function Learn() {
     const rander = React.useMemo(() => {
         return <div>
             {dataSource.map((item, idx) => {
-                return <Article mt={style.marginbottom} {...item} key={idx}></Article>
+                return <Article mt={style.marginbottom} {...item} key={uuid()}></Article>
             })}
         </div>
     }, [dataSource])
@@ -145,7 +145,7 @@ export default function Learn() {
             setNav(true)
         })
     }, [])
-    
+
     return (
         <div>
             <Header onClick={handlerHeader} text={"Learn"} nav={nav}></Header>

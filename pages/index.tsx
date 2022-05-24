@@ -179,8 +179,14 @@ function MyApp() {
       if (t === 'decentraland' && twoNavState === 'Parcel') {
         reqDclParcelList(true);
       }
+      if (t === "cryptovoxels" && twoNavState === 'Events') {
+        reqCvEventList()
+      }
+      if (t === "decentraland" && twoNavState === 'Events') {
+        reqDclEventList()
+      }
     },
-    [reqDclParcelList, reqCvParcelList, twoNavState],
+    [twoNavState],
   );
 
   React.useEffect(() => {
@@ -237,7 +243,7 @@ function MyApp() {
           }
         }, 1000)
       }
-    }, [tabState, twoNavState, page, count, type, data]);
+    }, [twoNavState, page, count, type, data]);
 
   const rander = React.useMemo(() => {
     if (twoNavState === 'Parcel' && data) {
@@ -317,7 +323,7 @@ function MyApp() {
     if (tabState === 'decentraland' && twoNavState === 'Events') {
       reqDclEventList();
     }
-  }, [twoNavState, reqCvParcelList, reqDclParcelList, reqCvEventList, reqDclEventList]);
+  }, [twoNavState]);
 
 
   React.useEffect(() => {

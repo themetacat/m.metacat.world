@@ -47,7 +47,7 @@ export default function Header({ onClick, text, nav }: Props) {
             onClick(page[0].label);
           }}
         >
-          <Link href="/" >
+          <Link href="/" prefetch>
             {page[0].label}
           </Link >
         </li>
@@ -55,7 +55,7 @@ export default function Header({ onClick, text, nav }: Props) {
           onClick={() => {
             onClick(page[1].label);
           }}>
-          <Link href='/builders'>
+          <Link href='/builders' prefetch>
             {page[1].label}
           </Link>
         </li>
@@ -64,7 +64,7 @@ export default function Header({ onClick, text, nav }: Props) {
             onClick(page[2].label);
 
           }}>
-          <Link href='/wearables?type=wearabledao'>
+          <Link href='/wearables?type=wearabledao' prefetch>
             {page[2].label}
           </Link>
         </li>
@@ -73,7 +73,7 @@ export default function Header({ onClick, text, nav }: Props) {
             onClick(page[3].label);
 
           }}>
-          <Link href='/learn?type=articles'>
+          <Link href='/learn?type=articles' prefetch>
             {page[3].label}
           </Link>
 
