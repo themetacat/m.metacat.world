@@ -53,7 +53,9 @@ export default function Event({
   const hasEntry = inTimeLine();
   return (
     <div className={cn(style.container, mt)} onClick={toParcel}>
-      <img src={cover_img} className={style.img} />
+      <div className={style.ov}>
+        <img src={cover_img} className={style.img} />
+      </div>
       <div className={style.detail}>
         <div className={style.title}>{name}</div>
         <div className={style.time}>{activity_time}</div>
