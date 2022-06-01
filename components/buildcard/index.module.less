@@ -4,14 +4,26 @@
   background: rgba(0, 236, 222, 0.05);
   border: 0.5px solid rgba(0, 208, 236, 0.5);
   box-sizing: border-box;
-  box-shadow: inset 0 0 15px rgb(24 255 241 / 30%); 
+  box-shadow: inset 0 0 15px rgb(24 255 241 / 30%);
 }
 .imgContainer {
   width: 100%;
   height: 193px;
   display: flex;
   flex-wrap: wrap;
-  .img {
+  .i {
+    width: 50%;
+    height: 50%;
+    position: relative;
+    overflow: hidden;
+    .img {
+      position: absolute;
+      right: -122%;
+      bottom: -119%;
+      display: block;
+    }
+  }
+  .img2 {
     width: 50%;
     height: 50%;
     display: block;

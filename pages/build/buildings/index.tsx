@@ -1,44 +1,41 @@
 import React from 'react';
 import cn from "classnames"
+import style from "./index.module.css"
 import { useRouter } from "next/router"
 
-import style from "./index.module.css";
-import Header from '../../components/header';
-import ToTop from '../../components/jump-to-top';
-import Cantact from '../../components/cantact';
-import InfoCard from "../../components/info_card"
+import Header from "../../../components/header"
+import Cantact from '../../../components/cantact';
+import BuilderCard from "../../../components/buildcard"
+import ToTop from '../../../components/jump-to-top';
 
-import { req_wearable_creators } from '../../service/z_api';
+import { getBuilderList } from '../../../service';
+
 
 const TAB = [
     {
-        label: 'Creators',
-        type: 'creators',
-        link: '/wearables',
+        label: 'Buliders',
+        type: 'buliders',
     },
     {
-        label: 'WearableDao',
-        type: 'wearabledao',
-        link: '/wearables/wearabledao',
+        label: "Bulidings",
+        type: "bulidings",
     },
-]
-export default function wearables() {
+];
+
+export default function Builders() {
     const router = useRouter()
+    const [tabState, setTabState] = React.useState("bulidings");
+    const [headerText, setHeaderText] = React.useState("")
     const [contact, setContact] = React.useState(false);
     const [wxState, setWxState] = React.useState(false);
-
-    const [fixedState, setFixedState] = React.useState(false)
-    const [tabState, setTabState] = React.useState("creators")
-    const [nav, setNav] = React.useState(null);
+    const [page, setPage] = React.useState(1)
+    const [count, setCount] = React.useState(50)
     const [data, setData] = React.useState([])
+    const [nav, setNav] = React.useState(null);
+    const [fixedState, setFixedState] = React.useState(false)
 
-    const requestData = React.useCallback(async () => {
-        const result = await req_wearable_creators()
-        if (result.code === 100000) {
-            setData(result.data)
-        }
-    }, [])
     const handlerHeader = React.useCallback((label, t) => {
+        setHeaderText(label);
         if (label === 'Contact Us') {
             setContact(true);
         }
@@ -52,10 +49,33 @@ export default function wearables() {
         return <Cantact onClick={changeContactState}></Cantact>;
     }, [contact]);
 
-    const changeTab = React.useCallback((t, l) => {
+    const reqData = React.useCallback(
+        async () => {
+            const result = await getBuilderList(page, count)
+            if (result.code === 100000) {
+                setData(result.data.list)
+            }
+        }, [page, count])
 
-        router.replace(l)
+    const rander = React.useMemo(() => {
+        return (
+            <div className={style.list}>
+                {data.map((card) => {
+                    return <BuilderCard {...card} mb={style.marginbottom}></BuilderCard>
+                })}
+            </div>
+        )
+    }, [data])
+
+    React.useEffect(() => {
+        reqData()
+    }, [reqData])
+
+    const changeTab = React.useCallback((t) => {
+        setTabState(t)
+        router.replace(`/build/${t}`)
     }, [])
+
     React.useEffect(() => {
         const listener = () => {
             if (document.getElementById('switch') && window.scrollY > 204) {
@@ -67,10 +87,7 @@ export default function wearables() {
         document.addEventListener('scroll', listener);
         return () => document.removeEventListener('scroll', listener);
     }, [fixedState]);
-    
-    React.useEffect(() => {
-        requestData()
-    }, [requestData])
+
 
     React.useEffect(() => {
         setNav(true)
@@ -78,20 +95,15 @@ export default function wearables() {
             setNav(true)
         })
     }, [])
-
-    const toTopic = React.useCallback((id, c) => {
-        window.open(`/topic/${c}`);
-    }, []);
     return (
-        <div>
-
-            <Header onClick={handlerHeader} text={"Wearables"} nav={nav}></Header>
+        <div className={style.container}>
+            <Header onClick={handlerHeader} text={'Build'} nav={nav}></Header>
             <div className={cn(style.navContainer, fixedState ? style.fixed : null)} id="switch">
                 <div className={style.bg}></div>
                 {TAB.map((item, idx) => {
                     return (
                         <div className={cn(style.item, tabState === item.type ? style.action : null)} key={idx} onClick={() => {
-                            changeTab(item.type, item.link)
+                            changeTab(item.type)
                         }}>
                             {item.label}
                         </div>
@@ -99,17 +111,13 @@ export default function wearables() {
                 })}
 
             </div>
-            <div className={style.bg}><img src="/images/creartorsBanner.png" /></div>
+            <img src="/images/buildingsBannner.png" className={cn(style.banner)} />
 
-            <div className={style.cardList}>
-                {data.map((card, idx) => {
-                    return <InfoCard {...card} key={idx} onClick={toTopic}></InfoCard>
-                })}
+            <div>
+                {rander}
             </div>
             {contact ? zhezhao : null}
-
             {wxState ? <img src="/images/code.jpg" className={cn('w-20 h-20', style.wx)} /> : null}
-
             <ToTop></ToTop>
         </div>
     )

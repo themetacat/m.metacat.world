@@ -1,0 +1,19 @@
+.container {
+  font-weight: 500;
+  font-size: 14px;
+  color: #999999;
+  position: absolute;
+  left: -137px;
+  top: 9px;
+}
+.container .item {
+  padding: 0 16px;
+  height: 48px;
+  line-height: 48px;
+  background-color: #0f191b;
+  border-bottom: 1px solid #0c3d45;
+  width: 133px;
+}
+.container .item:last-child {
+  border: 0;
+}

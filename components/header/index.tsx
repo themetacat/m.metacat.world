@@ -3,12 +3,15 @@ import cn from 'classnames';
 import Link from 'next/link';
 import style from './index.module.css';
 
+import TwoNavigation from "../towNavigation"
+
+
 const page = [
   {
     label: 'Home',
   },
   {
-    label: 'Builders',
+    label: 'Build',
   },
   {
     label: 'Wearables',
@@ -21,6 +24,31 @@ const page = [
   },
 ];
 
+const build = [
+  {
+    label: "Buliders",
+    type: "buliders",
+    link: '/build/buliders',
+  },
+  {
+    label: "Bulidings",
+    type: "bulidings",
+    link: '/build/buildings',
+  }
+]
+const wearable = [
+  {
+    label: 'Creators',
+    type: 'creators',
+    link: '/wearables',
+  },
+  {
+    label: 'WearableDao',
+    type: 'wearabledao',
+    link: '/wearables/wearabledao',
+  },
+];
+
 type Props = {
   onClick?;
   text: string;
@@ -30,6 +58,9 @@ type Props = {
 export default function Header({ onClick, text, nav }: Props) {
   const [navState, setNavState] = React.useState(false);
   const [pageState, setPageState] = React.useState(text || page[0].label);
+
+  const [buildState, setBuildState] = React.useState(false)
+  const [wearablesState, setWearableState] = React.useState(false)
 
   const changePage = React.useCallback(() => {
     setNavState(!navState);
@@ -54,19 +85,19 @@ export default function Header({ onClick, text, nav }: Props) {
         <li className={cn(style.item, pageState === page[1].label ? style.action : null)}
           onClick={() => {
             onClick(page[1].label);
+            setBuildState(!buildState)
           }}>
-          <Link href='/builders' prefetch>
-            {page[1].label}
-          </Link>
+          {page[1].label}
+          {buildState ? <TwoNavigation options={build}></TwoNavigation> : null}
         </li>
         <li className={cn(style.item, pageState === page[2].label ? style.action : null)}
           onClick={() => {
             onClick(page[2].label);
-
-          }}>
-          <Link href='/wearables?type=wearabledao' prefetch>
-            {page[2].label}
-          </Link>
+            setWearableState(!wearablesState)
+          }}
+        >
+          {page[2].label}
+          {wearablesState ? <TwoNavigation options={wearable}></TwoNavigation> : null}
         </li>
         <li className={cn(style.item, pageState === page[3].label ? style.action : null)}
           onClick={() => {
@@ -96,7 +127,7 @@ export default function Header({ onClick, text, nav }: Props) {
     //         }
     //     }} className={cn(style.item, pageState === item.label ? style.action : null)}>{item.label}</li>
     // })
-  }, []);
+  }, [buildState,wearablesState]);
 
   React.useEffect(() => {
     setNavState(!nav)

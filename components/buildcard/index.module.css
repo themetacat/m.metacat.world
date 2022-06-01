@@ -12,7 +12,19 @@
   display: flex;
   flex-wrap: wrap;
 }
-.imgContainer .img {
+.imgContainer .i {
+  width: 50%;
+  height: 50%;
+  position: relative;
+  overflow: hidden;
+}
+.imgContainer .i .img {
+  position: absolute;
+  right: -122%;
+  bottom: -119%;
+  display: block;
+}
+.imgContainer .img2 {
   width: 50%;
   height: 50%;
   display: block;
