@@ -1,6 +1,5 @@
 import React from 'react';
 import cn from "classnames"
-import style from "./index.module.css"
 import { useRouter } from "next/router"
 
 import Header from "../../../components/header"
@@ -10,6 +9,7 @@ import ToTop from '../../../components/jump-to-top';
 
 import { getBuilderList } from '../../../service';
 
+import style from "./index.module.css"
 
 const TAB = [
     {
