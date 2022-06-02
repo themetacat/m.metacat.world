@@ -102,7 +102,7 @@ export default function Buildings() {
         window.open(`/topic/${id}`);
     }, []);
     return (
-        <div>
+        <div className={style.container}>
             <Header onClick={handlerHeader} text={'Build'} nav={nav}></Header>
 
             <div className={cn(style.navContainer, fixedState ? style.fixed : null)} id="switch">
@@ -122,7 +122,7 @@ export default function Buildings() {
             <div className={cn(style.twoNav, fixedState ? style.fix : null)}>
                 {
                     TwoNav.map((i, idx) => {
-                        return <a href={i.type === "Institutions" ? "#t1" : "#t2"}>
+                        return <a href={i.type === "Institutions" ? "#Institutions" : "#Individuals"}>
                             <div key={idx} className={cn(style.twoNavItem, twoNavState === i.type ? style.action : null)} onClick={() => {
                                 changeTwoNavState(i.type)
                             }}>
@@ -133,14 +133,14 @@ export default function Buildings() {
                 }
             </div>
             <div className={style.cardList}>
-                <div className={style.title} id="t1">
+                <div className={style.title} id="Institutions">
                     <div></div>
                     Institutions
                 </div>
                 {institution.map((card, idx) => {
                     return <InfoCard {...card} key={idx} onClick={toTopic}></InfoCard>
                 })}
-                <div className={style.title} id="t2">
+                <div className={style.title} id="Individuals">
                     <div></div>
                     Individuals
                 </div>

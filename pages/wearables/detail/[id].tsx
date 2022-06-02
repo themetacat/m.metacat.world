@@ -147,7 +147,7 @@ export default function Detail({ artwork, artist, id }) {
     }, [contact]);
 
     const toWearableDao = React.useCallback(() => {
-        router.replace(`/wearables?type=${router.query.type}`)
+        router.replace(`/wearables/wearabledao?type=${router.query.type}`)
 
     }, [router.query.type])
 
@@ -165,9 +165,9 @@ export default function Detail({ artwork, artist, id }) {
 
 
     return <div className={style.con}>
-        <Header onClick={handlerHeader} text={"Wearables"} nav={nav}/>
+        <Header onClick={handlerHeader} text={"Wearables"} nav={nav} />
         <div className={style.nav}>
-            <div onClick={toWearableDao}>{router.query.type === "pfp" ? "PFP" : "WearableDao"}</div>
+            <div onClick={toWearableDao}>{"WearableDao"}</div>
             <img src="/images/you.png" />
             <div className={style.name}>{artwork.name}</div>
         </div>

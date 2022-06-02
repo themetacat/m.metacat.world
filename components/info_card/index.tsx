@@ -28,7 +28,7 @@ export default function InfoCard({
     return (
         <div className={style.container}
             onClick={() => {
-                onClick(topic_id, country);
+                onClick(topic_id, name);
             }}
         >
             <div className={style.header}>
@@ -40,33 +40,33 @@ export default function InfoCard({
                         {name}
                     </div>
                     {country ? <div className={style.country}>
-                        country:{country}
+                        country : {country}
                     </div> : null}
                 </div>
 
             </div>
             <div className={style.lianxi}>
-                <a href={website}>
+                {website ? <a href={website}>
                     <div className={style.item}>
                         <img src="/images/icon/home.png" />
                         Home
                     </div>
-                </a>
-                <div className={style.shuxian}></div>
-                <a href={twitter}>
+                </a> : null}
+                {/* <div className={style.shuxian}></div> */}
+                {twitter ? <a href={twitter}>
 
                     <div className={style.item}>
                         <img src="/images/icon/twitter.png" />
                         Twiiter
                     </div>
-                </a>
-                <div className={style.shuxian}></div>
-                <a href={discord}>
+                </a> : null}
+                {/* <div className={style.shuxian}></div> */}
+                {discord ? <a href={discord}>
                     <div className={style.item}>
                         <img src="/images/icon/discord.png" />
                         Discord
                     </div>
-                </a>
+                </a> : null}
             </div>
         </div>
     )

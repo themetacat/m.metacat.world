@@ -31,10 +31,16 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
     const [parcelList, setParcelList] = React.useState(parcel_list);
     const [trafficList, setTrafficList] = React.useState(traffic_list);
     const [nav, setNav] = React.useState(null);
-    const [tabState, setTabState] = React.useState("buildings")
+    const [tabState, setTabState] = React.useState(parcel_list ? "buildings" : "wearable")
     const [textState, setTextState] = React.useState(false)
     const [fixedState, setFixedState] = React.useState(false)
     const [searchText, setSearchText] = React.useState("")
+
+
+    const f1 = fixedState && wearable ? style.fixed : null
+    const f2 = fixedState && !wearable ? style.fixed2 : null
+    const f3 = fixedState && wearable ? style.fixed3 : null
+    const f4 = wearable ? f3 : f2
 
     const handlerHeader = React.useCallback((label, t) => {
         if (label === 'Contact Us') {
@@ -123,49 +129,52 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
     }, [fixedState]);
 
     return (
-        <div>
-            <Header onClick={handlerHeader} text={"Builders"} nav={nav}></Header>
+        <div className={style.container}>
+            <Header onClick={handlerHeader} text={"Build"} nav={nav}></Header>
             <div className={cn(style.info, style.mt)}>
                 <img src={baseInfo.logo_url} className={style.logo} />
                 <div className={style.name}>{baseInfo.name}</div>
+                {base_info.country ? <div className={style.country}>country : {base_info.country}</div> : null}
                 <div className={style.lianxi}>
-                    <div className={style.item} onClick={() => {
+                    {baseInfo.website ? <div className={style.item} onClick={() => {
                         jumpToUrl(baseInfo.website)
                     }}>
                         <img src="/images/topic_home.png" />
                         <div>Home</div>
-                    </div>
-                    <div className={style.shuxian}></div>
-                    <div className={style.item} onClick={() => {
+                    </div> : null}
+                    {/* <div className={style.shuxian}></div> */}
+                    {baseInfo.twitter ? <div className={style.item} onClick={() => {
                         jumpToUrl(baseInfo.twitter)
                     }}>
                         <img src="/images/topic_twitter.png" />
                         <div>Twitter</div>
-                    </div>
-                    <div className={style.shuxian}></div>
-                    <div className={style.item} onClick={() => {
+                    </div> : null}
+                    {/* <div className={style.shuxian}></div> */}
+                    {baseInfo.discord ? <div className={style.item} onClick={() => {
                         jumpToUrl(baseInfo.discord)
                     }}>
                         <img src="/images/topic_vector.png" />
                         <div>Discord</div>
-                    </div>
+                    </div> : null}
                 </div>
 
                 <div className={cn(style.text, textState ? style.t : null)}>{baseInfo.description}
                     {textState ? null : <div onClick={changeText}>More</div>}
                 </div>
             </div>
-            {parcel_list && wearable ? <div className={cn(style.nav, fixedState && wearable ? style.fixed : null)}>
-                {NAV.map((i, idx) => {
-                    return <div className={cn(style.item, tabState === i.type ? style.ac : null)}
-                        onClick={() => { setTabState(i.type) }}
-                        key={idx}
-                    >
-                        {i.label}
-                    </div>
-                })}
-            </div> : null}
-            <div className={(cn(style.search, fixedState && wearable ? style.fx : null))} id="switch">
+            {
+                parcel_list && wearable ? <div className={cn(style.nav, f1)}>
+                    {NAV.map((i, idx) => {
+                        return <div className={cn(style.item, tabState === i.type ? style.ac : null)}
+                            onClick={() => { setTabState(i.type) }}
+                            key={idx}
+                        >
+                            {i.label}
+                        </div>
+                    })}
+                </div> : null
+            }
+            <div className={(cn(style.search, f4))} id="switch">
                 <div className={style.input}>
                     <img src="/images/search.png" className={style.searchImg} />
                     <input type="text" placeholder="Search" value={searchText} onInput={changeText} />

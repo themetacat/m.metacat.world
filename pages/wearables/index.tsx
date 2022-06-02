@@ -83,7 +83,7 @@ export default function wearables() {
         window.open(`/topic/${c}`);
     }, []);
     return (
-        <div>
+        <div className={style.container}>
 
             <Header onClick={handlerHeader} text={"Wearables"} nav={nav}></Header>
             <div className={cn(style.navContainer, fixedState ? style.fixed : null)} id="switch">

@@ -86,6 +86,7 @@ export default function Header({ onClick, text, nav }: Props) {
           onClick={() => {
             onClick(page[1].label);
             setBuildState(!buildState)
+            setWearableState(false)
           }}>
           {page[1].label}
           {buildState ? <TwoNavigation options={build}></TwoNavigation> : null}
@@ -94,6 +95,7 @@ export default function Header({ onClick, text, nav }: Props) {
           onClick={() => {
             onClick(page[2].label);
             setWearableState(!wearablesState)
+            setBuildState(false)
           }}
         >
           {page[2].label}
@@ -127,7 +129,7 @@ export default function Header({ onClick, text, nav }: Props) {
     //         }
     //     }} className={cn(style.item, pageState === item.label ? style.action : null)}>{item.label}</li>
     // })
-  }, [buildState,wearablesState]);
+  }, [buildState, wearablesState]);
 
   React.useEffect(() => {
     setNavState(!nav)

@@ -19,9 +19,8 @@
   overflow: hidden;
 }
 .imgContainer .i .img {
-  position: absolute;
-  right: -122%;
-  bottom: -119%;
+  width: 100%;
+  height: 100%;
   display: block;
 }
 .imgContainer .img2 {
