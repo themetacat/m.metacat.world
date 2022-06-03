@@ -134,7 +134,7 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
             <div className={cn(style.info, style.mt)}>
                 <img src={baseInfo.logo_url} className={style.logo} />
                 <div className={style.name}>{baseInfo.name}</div>
-                {base_info.country ? <div className={style.country}>country : {base_info.country}</div> : null}
+                {base_info.country ? <div className={style.country}>Country : {base_info.country}</div> : null}
                 <div className={style.lianxi}>
                     {baseInfo.website ? <div className={style.item} onClick={() => {
                         jumpToUrl(baseInfo.website)

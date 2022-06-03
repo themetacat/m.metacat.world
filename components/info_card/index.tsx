@@ -40,7 +40,7 @@ export default function InfoCard({
                         {name}
                     </div>
                     {country ? <div className={style.country}>
-                        country : {country}
+                        Country : {country}
                     </div> : null}
                 </div>
 
