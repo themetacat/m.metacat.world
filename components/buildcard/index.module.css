@@ -12,18 +12,7 @@
   display: flex;
   flex-wrap: wrap;
 }
-.imgContainer .i {
-  width: 50%;
-  height: 50%;
-  position: relative;
-  overflow: hidden;
-}
-.imgContainer .i .img {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-.imgContainer .img2 {
+.imgContainer .img {
   width: 50%;
   height: 50%;
   display: block;

@@ -121,7 +121,7 @@ export default function DaoWebglCard({ graphicId, initFinish, model, tabState }:
 
   const toDetail = React.useCallback(() => {
 
-    router.replace(`/wearables/detail/${model.id}`,)
+    router.replace(`/wearables/detail/${model.id}?type=${tabState}`)
   }, [tabState])
 
 

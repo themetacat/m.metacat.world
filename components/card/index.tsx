@@ -37,7 +37,7 @@ export default function Card({
   return (
     <div className={cn(style.container, mt)} onClick={toParcel}>
       <div className={style.container2}>
-        <div className={style.ov}>
+        <div className={style.banner}>
           <img src={cover_img_url} className={style.banner}></img>
           {Home ? null : <div className={style.type}>{world}</div>}
         </div>
