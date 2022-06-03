@@ -10,7 +10,6 @@
 .container .buttom {
   position: relative;
   display: flex;
-  align-items: center;
 }
 .container .buttom img {
   width: 16px;

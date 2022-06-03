@@ -33,9 +33,6 @@ export default function Detail({ artwork, artist, id }) {
     const animationRef = React.useRef(null);
     const [intro, setIntro] = React.useState(true);
 
-
-    const [nav, setNav] = React.useState(null);
-
     const removeIntro = React.useCallback(() => {
         setIntro(false);
     }, [null]);
@@ -131,11 +128,10 @@ export default function Detail({ artwork, artist, id }) {
 
 
 
-    const handlerHeader = React.useCallback((label, t) => {
+    const handlerHeader = React.useCallback((label) => {
         if (label === 'Contact Us') {
             setContact(true);
         }
-        setNav(t)
     }, []);
 
     const changeContactState = React.useCallback((state, wxstate) => {
@@ -156,16 +152,9 @@ export default function Detail({ artwork, artist, id }) {
     }, []);
 
 
-    React.useEffect(() => {
-        setNav(true)
-        window.addEventListener("scroll", function () {
-            setNav(true)
-        })
-    }, [])
-
 
     return <div className={style.con}>
-        <Header onClick={handlerHeader} text={"Wearables"} nav={nav}/>
+        <Header onClick={handlerHeader} text={"Wearables"} />
         <div className={style.nav}>
             <div onClick={toWearableDao}>{router.query.type === "pfp" ? "PFP" : "WearableDao"}</div>
             <img src="/images/you.png" />

@@ -49,7 +49,6 @@ export const getCarouseList = async () => {
   const url = `/api/carousel`;
 
   const res = await fetch(url);
-  console.log(res)
   const json = await res.json();
 
   return json;
