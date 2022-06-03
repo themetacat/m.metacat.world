@@ -51,6 +51,7 @@
   font-style: normal;
   background: #0f191b;
   border-top: 1px solid #0d2f35;
+  position: relative;
 }
 .pageList .item:first-child {
   border: 0;

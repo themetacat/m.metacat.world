@@ -13,8 +13,21 @@
   margin: auto;
   border: 18px solid rgba(0, 208, 236, 0.2);
 }
-.bg {
+.banner {
+  display: block;
+  width: 375px;
+  height: 156px;
   background-color: #000;
+}
+.mt {
+  margin-top: 48px;
+}
+.list {
+  padding: 12px;
+  background: #0f191b;
+}
+.marginbottom {
+  margin-bottom: 10px;
 }
 .navContainer {
   height: 48px;
@@ -34,7 +47,7 @@
   left: 0;
 }
 .navContainer .item {
-  padding: 0 25px;
+  width: 97px;
   height: 36px;
   line-height: 36px;
   text-align: center;
@@ -68,10 +81,6 @@
   align-items: center;
   color: #fff;
   border-bottom: 1px solid #0f191b;
-}
-.cardList {
-  background: #0f191b;
-  padding: 15px 12px;
 }
 .fixed {
   position: fixed;

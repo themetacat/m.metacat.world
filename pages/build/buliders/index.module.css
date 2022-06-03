@@ -13,9 +13,6 @@
   margin: auto;
   border: 18px solid rgba(0, 208, 236, 0.2);
 }
-.bg {
-  background-color: #000;
-}
 .navContainer {
   height: 48px;
   width: 100%;
@@ -34,7 +31,7 @@
   left: 0;
 }
 .navContainer .item {
-  padding: 0 25px;
+  width: 97px;
   height: 36px;
   line-height: 36px;
   text-align: center;
@@ -69,9 +66,27 @@
   color: #fff;
   border-bottom: 1px solid #0f191b;
 }
-.cardList {
-  background: #0f191b;
-  padding: 15px 12px;
+.twoNav {
+  width: 100%;
+  height: 38px;
+  background: #0e2b30;
+  padding: 0 15px;
+  line-height: 38px;
+  display: flex;
+  color: #999;
+  font-weight: 400;
+  font-size: 12px;
+}
+.twoNav .twoNavItem {
+  margin-right: 30px;
+  box-sizing: border-box;
+}
+.twoNav .action {
+  border-bottom: 2px solid #00d0ec;
+  color: #fff;
+}
+.bg {
+  background: #000;
 }
 .fixed {
   position: fixed;
@@ -81,4 +96,31 @@
   z-index: 9999;
   margin: 0 auto;
   background-color: #000;
+}
+.fix {
+  position: fixed;
+  top: 95px;
+  right: 0;
+  left: 0;
+  z-index: 9999;
+  margin: 0 auto;
+  background: #0e2b30;
+}
+.cardList {
+  background: #0f191b;
+  padding: 0 12px;
+}
+.cardList .title {
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  display: flex;
+  padding: 20px 0 10px 0;
+}
+.cardList .title div {
+  width: 2px;
+  height: 12px;
+  background-color: #00d0ec;
+  margin-top: 3px;
+  margin-right: 8px;
 }
