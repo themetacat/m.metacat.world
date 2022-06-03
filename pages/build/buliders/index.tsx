@@ -137,16 +137,20 @@ export default function Buildings() {
                     <div></div>
                     Institutions
                 </div>
-                {institution.map((card, idx) => {
-                    return <InfoCard {...card} key={idx} onClick={toTopic}></InfoCard>
-                })}
+                <div className={style.c}>
+                    {institution.map((card, idx) => {
+                        return <InfoCard {...card} key={idx} onClick={toTopic}></InfoCard>
+                    })}
+                </div>
                 <div className={style.title} id="Individuals">
                     <div></div>
                     Individuals
                 </div>
-                {individuals.map((card, idx) => {
-                    return <InfoCard {...card} key={idx} onClick={toTopic}></InfoCard>
-                })}
+                <div className={style.c}>
+                    {individuals.map((card, idx) => {
+                        return <InfoCard {...card} key={idx} onClick={toTopic}></InfoCard>
+                    })}
+                </div>
             </div>
 
             {contact ? zhezhao : null}

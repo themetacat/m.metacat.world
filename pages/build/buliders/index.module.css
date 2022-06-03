@@ -124,3 +124,8 @@
   margin-top: 3px;
   margin-right: 8px;
 }
+.c {
+  background: #0f191b;
+  min-height: 500px;
+  width: 100%;
+}
