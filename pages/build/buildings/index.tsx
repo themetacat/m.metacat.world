@@ -97,7 +97,7 @@ export default function Builders() {
     }, [])
     return (
         <div className={style.container}>
-            <Header onClick={handlerHeader} text={'Build'} nav={nav}></Header>
+            <Header onClick={handlerHeader} text={'Build'} ></Header>
             <div className={cn(style.navContainer, fixedState ? style.fixed : null)} id="switch">
                 <div className={style.bg}></div>
                 {TAB.map((item, idx) => {
