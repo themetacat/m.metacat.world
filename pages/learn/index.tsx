@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from "classnames"
 import { useRouter } from "next/router"
-
+import { v4 as uuid } from 'uuid';
 import style from "./index.module.css";
 
 import Header from '../../components/header';
@@ -52,10 +52,13 @@ export default function Learn() {
     const [count, setCount] = React.useState(50);
     const [searchText, setSearchText] = React.useState('');
 
-    const handlerHeader = React.useCallback((label) => {
+    const [nav, setNav] = React.useState(null);
+
+    const handlerHeader = React.useCallback((label, t) => {
         if (label === 'Contact Us') {
             setContact(true);
         }
+        setNav(t)
     }, []);
 
     const requestData = React.useCallback(
@@ -126,7 +129,7 @@ export default function Learn() {
     const rander = React.useMemo(() => {
         return <div>
             {dataSource.map((item, idx) => {
-                return <Article mt={style.marginbottom} {...item} key={idx}></Article>
+                return <Article mt={style.marginbottom} {...item} key={uuid()}></Article>
             })}
         </div>
     }, [dataSource])
@@ -134,9 +137,18 @@ export default function Learn() {
     React.useEffect(() => {
         requestData(page, count, langState, tabState)
     }, [tabState, langState, page, count])
+
+
+    React.useEffect(() => {
+        setNav(true)
+        window.addEventListener("scroll", function () {
+            setNav(true)
+        })
+    }, [])
+
     return (
         <div>
-            <Header onClick={handlerHeader} text={"Learn"}></Header>
+            <Header onClick={handlerHeader} text={"Learn"} nav={nav}></Header>
             <img src="/images/learn_banner.png" className={cn(style.banner, style.mt)} />
             <div className={style.nav}>
                 <div className={style.bg}></div>
