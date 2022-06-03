@@ -1,0 +1,145 @@
+.graphic {
+  /* min-width: 355px; */
+  min-height: 230px;
+  min-width: 230px;
+}
+.card {
+  display: flex;
+  max-width: 355px;
+  background: rgba(0, 236, 222, 0.05);
+  /* 辅-亮绿 */
+
+  border: 0.5px solid rgba(0, 208, 236, 0.5);
+  box-sizing: border-box;
+  box-shadow: inset 0px 0px 15px rgba(24, 255, 241, 0.3);
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 25px rgba(0, 236, 222, 0.35), inset 0px 0px 15px rgba(24, 255, 241, 0.3);
+  cursor: pointer;
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+}
+
+.footer {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.footer:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.goDetail {
+  color: #888;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.title {
+  max-width: 250px;
+}
+
+.goDetail2 {
+  color: #777;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  background-color: rgba(0, 208, 236, 0.2);
+  padding: 5px;
+}
+
+.goDetail2 > img {
+  width: 10px;
+  height: 10;
+  filter: brightness(75%);
+}
+
+.opese {
+  width: 32px;
+  height: 32px;
+  top: 15px;
+  right: 15px;
+}
+
+.goDetail:hover,
+.goDetail2:hover,
+.icon:hover,
+.opese:hover {
+  filter: brightness(125%);
+}
+
+.icon:active,
+.opese:active {
+  filter: brightness(75%);
+}
+
+.goDetail:active,
+.goDetail2:active {
+  filter: brightness(50%);
+}
+.detail {
+  width: 105px;
+  height: 230px;
+  background: #0b1d1e;
+  padding: 15px 0 0 10px;
+  position: relative;
+}
+
+.title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #fff;
+  overflow: hidden;
+}
+.text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  color: #888888;
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+
+.name {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  color: #fff;
+}
+
+.toDetail {
+  display: flex;
+  color: #555;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.img {
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+}
+.toopensea{
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+}
+.rtv{
+  position: relative;
+}

@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  width: 351px;
+  height: 106px;
+
+  /* 辅-亮绿 */
+  padding: 8px;
+  background: rgba(0, 236, 222, 0.05);
+  border: 0.5px solid rgba(0, 208, 236, 0.5);
+  box-sizing: border-box;
+  box-shadow: inset 0 0 15px rgb(24 255 241 / 30%);
+}
+.img {
+  display: block;
+  width: 90px;
+  height: 90px;
+}
+.detail {
+  position: relative;
+  flex: 1;
+  width: 244px;
+  padding: 8px;
+  .title {
+    width: 177px;
+    height: 20px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    font-style: normal;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-line-clamp: 1;
+  }
+  .d {
+    display: flex;
+    color: #aaa;
+    font-weight: 400;
+    font-size: 10px;
+    margin: 2px 0 6px;
+    width: 220px;
+    height: 20px;
+    font-style: normal;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    .source {
+      margin: 0 8px;
+    }
+    div {
+      white-space: nowrap;
+    }
+  }
+  .text {
+    display: -webkit-box;
+    overflow: hidden;
+    color: #aaa;
+    font-weight: 400;
+    font-size: 12px;
+    font-style: normal;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-line-clamp: 2;
+  }
+}

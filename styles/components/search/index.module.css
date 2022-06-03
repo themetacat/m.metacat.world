@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  margin-top: 12px;
+  padding: 0 10px;
+  background-color: #0e2b30;
+}
+.container .buttom {
+  position: relative;
+  display: flex;
+}
+.container .buttom img {
+  width: 16px;
+  height: 16px;
+  filter: contrast(0);
+}
+.container .buttom div {
+  color: #999;
+  font-weight: 400;
+  font-size: 12px;
+  font-style: normal;
+}
+.container .buttom input {
+  color: #fff;
+  font-size: 12px;
+  background-color: #0e2b30;
+  border: none;
+  outline: none;
+  transition: width 0.5s;
+  caret-color: #00d0ec;
+}
+.container .buttom .w1 {
+  width: 0;
+}
+.container .buttom .w2 {
+  width: 140px;
+}
+.container .buttom .close {
+  position: absolute;
+  top: 2px;
+  right: 0;
+}

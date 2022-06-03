@@ -1,0 +1,33 @@
+.container {
+  height: 57px;
+  width: 100%;
+  background-color: #0f191b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.container .loding {
+  display: flex;
+}
+.container .loding img {
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+}
+.container .loding div {
+  color: #666666;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+}
+.container .content {
+  color: #666666;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -10px;
+}
