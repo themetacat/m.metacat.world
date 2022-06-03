@@ -1,16 +1,16 @@
 .container {
-  width: 100%;
-  height: 48px;
-  background: #000000;
-  border-bottom: 0.5px solid rgba(0, 208, 236, 0.3);
-  box-sizing: border-box;
-  padding: 14px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
   display: flex;
   justify-content: space-between;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 99999;
+  box-sizing: border-box;
+  width: 100%;
+  height: 48px;
+  padding: 14px 10px 14px 20px;
+  background: #000;
+  border-bottom: 0.5px solid rgba(0, 208, 236, 0.3);
 }
 .container .header_left {
   display: flex;
@@ -20,37 +20,38 @@
   height: 20px;
 }
 .container .header_left .title {
-  font-style: normal;
+  margin-left: 4px;
+  color: #fff;
   font-weight: 900;
   font-size: 14px;
+  font-style: normal;
   line-height: 16px;
   text-transform: uppercase;
-  color: #ffffff;
-  margin-left: 4px;
 }
 .container .header_right {
+  position: relative;
+  float: right;
   width: 24px;
   height: 24px;
-  float: right;
-  position: relative;
 }
 .pageList {
-  list-style: none;
   position: absolute;
-  left: -148px;
   top: 9px;
+  left: -148px;
   z-index: 999;
+  list-style: none;
 }
 .pageList .item {
   width: 133px;
   height: 48px;
-  background: #0f191b;
-  border-top: 1px solid #0d2f35;
   padding: 13px 16px;
-  color: #999999;
-  font-style: normal;
+  color: #999;
   font-weight: 500;
   font-size: 14px;
+  font-style: normal;
+  background: #0f191b;
+  border-top: 1px solid #0d2f35;
+  position: relative;
 }
 .pageList .item:first-child {
   border: 0;
