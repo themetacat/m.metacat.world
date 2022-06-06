@@ -147,7 +147,7 @@ export default function Detail({ artwork, artist, id }) {
     }, [contact]);
 
     const toWearableDao = React.useCallback(() => {
-        router.replace(`/wearables/wearabledao?type=${router.query.type}`)
+        router.replace(`/wearables/wearabledao`)
 
     }, [router.query.type])
 

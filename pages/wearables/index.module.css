@@ -13,8 +13,38 @@
   margin: auto;
   border: 18px solid rgba(0, 208, 236, 0.2);
 }
-.bg {
+.banner {
+  background-image: url('/images/banner/bg.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   background-color: #000;
+  width: 375px;
+  height: 116px;
+  overflow: hidden;
+}
+.banner .title {
+  font-weight: 900;
+  font-size: 32px;
+  color: #ddd;
+  text-align: center;
+  margin-top: 25px;
+}
+.banner .text {
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+}
+.banner .text .hengxian {
+  height: 1px;
+  width: 45px;
+  background: #999999;
+  margin-top: 10px;
+}
+.banner .text .t {
+  margin: 0 15px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #999;
 }
 .navContainer {
   height: 48px;

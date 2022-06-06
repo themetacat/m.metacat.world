@@ -88,6 +88,8 @@
 }
 .bg {
   background: #000;
+  display: flex;
+  justify-content: center;
 }
 
 .fixed {
@@ -115,6 +117,7 @@
     font-weight: 600;
     font-size: 12px;
     display: flex;
+    position: relative;
 
     div {
       width: 2px;
@@ -122,6 +125,22 @@
       background-color: #00d0ec;
       margin-top: 3px;
       margin-right: 8px;
+    }
+    .Institutions {
+      position: absolute;
+      left: 0;
+      top: -60px;
+      width: 2px;
+      height: 12px;
+      background: rgba(0, 0, 0, 0);
+    }
+    .Individuals {
+      position: absolute;
+      left: 0;
+      top: -30px;
+      width: 2px;
+      height: 12px;
+      background: rgba(0, 0, 0, 0);
     }
     padding: 20px 0 10px 0;
   }
@@ -133,4 +152,10 @@
   background: #0f191b;
   min-height: 500px;
   width: 100%;
+}
+.loading{
+  width: 30px;
+  height: 30px;
+  display: block;
+  margin: 80px auto;
 }

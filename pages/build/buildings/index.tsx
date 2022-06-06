@@ -13,8 +13,8 @@ import style from "./index.module.css"
 
 const TAB = [
     {
-        label: 'Buliders',
-        type: 'buliders',
+        label: 'Builders',
+        type: 'builders',
     },
     {
         label: "Buildings",
@@ -111,7 +111,9 @@ export default function Builders() {
                 })}
 
             </div>
-            <img src="/images/BuildingsBanner.png" className={cn(style.banner)} />
+            <div className={style.b}>
+                <img src="/images/BuildingsBanner.png" className={cn(style.banner)} />
+            </div>
 
             <div>
                 {rander}

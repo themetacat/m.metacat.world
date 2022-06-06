@@ -18,7 +18,7 @@ const NAV = [
     },
     {
         label: 'Wearable',
-        type: 'wearable',
+        type: 'wearables',
     },
 ];
 
@@ -31,10 +31,13 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
     const [parcelList, setParcelList] = React.useState(parcel_list);
     const [trafficList, setTrafficList] = React.useState(traffic_list);
     const [nav, setNav] = React.useState(null);
-    const [tabState, setTabState] = React.useState(parcel_list ? "buildings" : "wearable")
+    const [tabState, setTabState] = React.useState(parcel_list ? "buildings" : "wearables")
     const [textState, setTextState] = React.useState(false)
     const [fixedState, setFixedState] = React.useState(false)
     const [searchText, setSearchText] = React.useState("")
+    const [originParcelList, setOriginParcelList] = React.useState(parcel_list);
+    const [wearables, setWearables] = React.useState(wearable)
+    const [originWearables, setOriginWearables] = React.useState(wearable)
 
 
     const f1 = fixedState && wearable ? style.fixed : null
@@ -79,11 +82,12 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
     }, [contact]);
 
 
+
     const search = React.useCallback(() => {
         if (tabState === 'buildings') {
             if (parcelList) {
                 if (searchText === '' || searchText === null) {
-                    setParcelList(parcelList);
+                    setParcelList(originParcelList);
                     return;
                 }
                 const dataToShow = parcelList.filter((x) => {
@@ -95,23 +99,22 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
                 setParcelList(dataToShow);
             }
         }
-        if (tabState === 'wearable') {
-            if (parcelList) {
+        if (tabState === 'wearables') {
+            if (wearables) {
                 if (searchText === '' || searchText === null) {
-                    setParcelList(parcelList);
+                    setWearables(originWearables);
                     return;
                 }
-                const dataToShow = parcelList.filter((x) => {
+                const dataToShow = wearables.filter((x) => {
                     return (
-                        x.description.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase()) > -1 ||
-                        x.name.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase()) > -1
+                        x.artist.name.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase()) > -1 ||
+                        x.artwork.name.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase()) > -1
                     );
                 });
-                setParcelList(dataToShow);
+                setWearables(dataToShow);
             }
         }
-    }, [searchText, parcelList, tabState]);
-
+    }, [searchText, parcelList, tabState, originWearables]);
     const scrollLoading = React.useCallback(() => {
         console.log("")
     }, [])
@@ -162,7 +165,7 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
                 </div>
             </div>
             {
-                parcel_list && wearable ? <div className={cn(style.nav, f1)}>
+                parcel_list && wearables ? <div className={cn(style.nav, f1)}>
                     {NAV.map((i, idx) => {
                         return <div className={cn(style.item, tabState === i.type ? style.ac : null)}
                             onClick={() => { setTabState(i.type) }}
@@ -193,13 +196,13 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
                 {parcelList && tabState === "buildings" ? parcelList.map((item, index) => {
                     return <Card mt={style.marginbottom} {...item} key={index} />;
                 }) : null}
-                {wearable && tabState === "wearable" ? <InfiniteScroll
-                    dataLength={wearable.length}
+                {wearables && tabState === "wearables" ? <InfiniteScroll
+                    dataLength={wearables.length}
                     hasMore={true}
                     next={scrollLoading}
                     loader={<div className={style.bottom}></div>}
                 >
-                    <WearableCard card={wearable} tabState={tabState} ></WearableCard>
+                    <WearableCard card={wearables} tabState={tabState} ></WearableCard>
                 </InfiniteScroll > : null}
             </div>
             {contact ? zhezhao : null}

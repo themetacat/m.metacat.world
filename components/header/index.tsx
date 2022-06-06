@@ -26,13 +26,13 @@ const page = [
 
 const build = [
   {
-    label: "Buliders",
-    type: "buliders",
-    link: '/build/buliders',
+    label: "Builders",
+    type: "builders",
+    link: '/build/builders',
   },
   {
-    label: "Bulidings",
-    type: "bulidings",
+    label: "Buildings",
+    type: "buildings",
     link: '/build/buildings',
   }
 ]
@@ -45,7 +45,7 @@ const wearable = [
   {
     label: 'WearableDao',
     type: 'wearabledao',
-    link: '/wearables/wearabledao',
+    link: '/wearables/wearabledao?type=chinesered',
   },
 ];
 
@@ -87,6 +87,7 @@ export default function Header({ onClick, text, nav }: Props) {
             onClick(page[1].label);
             setBuildState(!buildState)
             setWearableState(false)
+            setPageState(page[1].label)
           }}>
           {page[1].label}
           {buildState ? <TwoNavigation options={build}></TwoNavigation> : null}
@@ -96,6 +97,7 @@ export default function Header({ onClick, text, nav }: Props) {
             onClick(page[2].label);
             setWearableState(!wearablesState)
             setBuildState(false)
+            setPageState(page[2].label)
           }}
         >
           {page[2].label}

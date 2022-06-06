@@ -13,11 +13,11 @@ import style from "./index.module.css"
 
 const TAB = [
     {
-        label: 'Buliders',
-        type: 'buliders',
+        label: 'Builders',
+        type: 'builders',
     },
     {
-        label: "Bulidings",
+        label: "Buildings",
         type: "buildings",
     },
 ];
@@ -42,13 +42,16 @@ export default function Buildings() {
     const [institution, setInstitution] = React.useState([])
     const [fixedState, setFixedState] = React.useState(false)
     const [nav, setNav] = React.useState(null);
+    const [anchor, setAnchor] = React.useState(false)
+    const [loading, setLoading] = React.useState(false)
     const requestData = React.useCallback(async () => {
-
+        setLoading(true)
         const result = await req_buid_builders_list()
         if (result.code === 100000) {
             setIndividuals(result.data.individuals)
             setInstitution(result.data.institution)
         }
+        setLoading(false)
     }, [])
 
     const handlerHeader = React.useCallback((label, t) => {
@@ -78,14 +81,18 @@ export default function Buildings() {
     React.useEffect(() => {
         const listener = () => {
             if (document.getElementById('switch') && window.scrollY > 204) {
-                setFixedState(true);
+                if (!anchor) {
+                    setFixedState(true);
+                } else {
+                    setAnchor(false)
+                }
             } else {
                 setFixedState(false);
             }
         };
         document.addEventListener('scroll', listener);
         return () => document.removeEventListener('scroll', listener);
-    }, [fixedState]);
+    }, [anchor]);
 
     React.useEffect(() => {
         requestData()
@@ -125,6 +132,8 @@ export default function Buildings() {
                         return <a href={i.type === "Institutions" ? "#Institutions" : "#Individuals"}>
                             <div key={idx} className={cn(style.twoNavItem, twoNavState === i.type ? style.action : null)} onClick={() => {
                                 changeTwoNavState(i.type)
+                                setFixedState(false);
+                                setAnchor(true)
                             }}>
                                 {i.type}
                             </div>
@@ -133,21 +142,23 @@ export default function Buildings() {
                 }
             </div>
             <div className={style.cardList}>
-                <div className={style.title} id="Institutions">
+                <div className={style.title} >
+                    <div className={style.Institutions} id="Institutions"></div>
                     <div></div>
                     Institutions
                 </div>
                 <div className={style.c}>
-                    {institution.map((card, idx) => {
+                    {loading ? <img src="/images/loading.png" className={style.loading} /> : institution.map((card, idx) => {
                         return <InfoCard {...card} key={idx} onClick={toTopic}></InfoCard>
                     })}
                 </div>
-                <div className={style.title} id="Individuals">
+                <div className={style.title}>
+                    <div className={style.Individuals} id="Individuals"></div>
                     <div></div>
                     Individuals
                 </div>
                 <div className={style.c}>
-                    {individuals.map((card, idx) => {
+                    {loading ? <img src="/images/loading.png" className={style.loading} /> : individuals.map((card, idx) => {
                         return <InfoCard {...card} key={idx} onClick={toTopic}></InfoCard>
                     })}
                 </div>

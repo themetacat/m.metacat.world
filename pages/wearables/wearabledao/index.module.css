@@ -95,6 +95,9 @@
   text-align: center;
   line-height: 36px;
 }
+.search .input .btn:active {
+  background: #00abc2;
+}
 .search .input .close {
   width: 16px;
   height: 16px;

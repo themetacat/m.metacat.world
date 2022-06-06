@@ -2,6 +2,7 @@ import React from 'react';
 
 import cn from 'classnames';
 import { useRouter, withRouter } from "next/router"
+import { v4 as uuid } from "uuid"
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from '../../../components/header';
 import Cantact from '../../../components/cantact';
@@ -21,7 +22,7 @@ const TAB = [
     {
         label: 'WearableDao',
         type: 'wearabledao',
-        link: '/wearables/wearabledao',
+        link: '/wearables/wearabledao?type=chinesered',
     },
 ]
 
@@ -212,9 +213,10 @@ function Wearables(r) {
                 </div> : null
             }
             <div className={cn(style.twoNav, fixedState ? style.fx2 : null)}>
-                {Nav.map((i, idx) => {
-                    return <div key={idx} className={cn(style.item, navState === i.type ? style.ac : null)} onClick={() => {
+                {Nav.map((i) => {
+                    return <div key={uuid} className={cn(style.item, navState === i.type ? style.ac : null)} onClick={() => {
                         setNavState(i.type)
+                        router.replace(`/wearables/wearabledao?type=${i.type}`)
                     }}>
                         {i.label}
                     </div>

@@ -67,7 +67,7 @@ export default function wearables() {
         document.addEventListener('scroll', listener);
         return () => document.removeEventListener('scroll', listener);
     }, [fixedState]);
-    
+
     React.useEffect(() => {
         requestData()
     }, [requestData])
@@ -99,7 +99,16 @@ export default function wearables() {
                 })}
 
             </div>
-            <div className={style.bg}><img src="/images/creartorsBanner.png" /></div>
+            <div className={style.banner}>
+                <div className={style.title}>
+                    Wearable Creators
+                </div>
+                <div className={style.text}>
+                    <div className={style.hengxian}></div>
+                    <div className={style.t}>IN METAVERSE WE BUILD</div>
+                    <div className={style.hengxian}></div>
+                </div>
+            </div>
 
             <div className={style.cardList}>
                 {data.map((card, idx) => {
