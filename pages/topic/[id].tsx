@@ -31,7 +31,6 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
     const [contact, setContact] = React.useState(false);
     const [wxState, setWxState] = React.useState(false);
 
-    console.log(wearable)
 
     const [baseInfo, setBaseInfo] = React.useState(base_info);
     const [parcelList, setParcelList] = React.useState(parcel_list);

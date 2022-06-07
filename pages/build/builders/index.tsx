@@ -101,7 +101,6 @@ export default function Buildings() {
 
     const getTop = React.useCallback(() => {
         const Institutions = document.getElementById("Individuals")
-        console.log(Institutions.getBoundingClientRect().top)
         document.addEventListener("scroll", () => {
             if (window.scrollY >= Institutions.getBoundingClientRect().top) {
                 setTwoNavState("Individuals")
