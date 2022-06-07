@@ -84,29 +84,6 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
     }, [contact]);
 
 
-    function countLines() {
-
-        // Get element with 'content' as id                            
-
-        let el = document.getElementById('content');
-
-        // Get total height of the content    
-
-        let divHeight = el.offsetHeight
-
-        console.log(divHeight)
-
-        // obj,countLinesect.style.lineHeight, returns 
-
-        // the lineHeight property
-
-        // height of one line 
-        // let lineHeight = Number(el.style.lineHeight);
-        console.log(el.fontSize)
-        // let lines = divHeight / lineHeight;
-
-    }
-
 
     const search = React.useCallback(() => {
         if (tabState === 'buildings') {
