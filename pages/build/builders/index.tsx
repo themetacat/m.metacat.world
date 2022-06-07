@@ -98,12 +98,27 @@ export default function Buildings() {
         requestData()
     }, [requestData])
 
+
+    const getTop = React.useCallback(() => {
+        const Institutions = document.getElementById("Individuals")
+        console.log(Institutions.getBoundingClientRect().top)
+        document.addEventListener("scroll", () => {
+            if (window.scrollY >= Institutions.getBoundingClientRect().top) {
+                setTwoNavState("Individuals")
+            } else {
+                setTwoNavState("Institutions")
+            }
+        })
+    }, [])
     React.useEffect(() => {
+        getTop()
         setNav(true)
         window.addEventListener("scroll", function () {
             setNav(true)
         })
-    }, [])
+    }, [getTop])
+
+
 
     const toTopic = React.useCallback((id, c) => {
         window.open(`/topic/${id}?type=buildings`);
@@ -126,7 +141,7 @@ export default function Buildings() {
 
             </div>
             <div className={style.bg}><img src="/images/buildersBanner.png" /></div>
-            <div className={cn(style.twoNav, fixedState ? style.fix : null)}>
+            <div className={cn(style.twoNav, fixedState ? style.fix : null)} id="nav">
                 {
                     TwoNav.map((i, idx) => {
                         return <a href={i.type === "Institutions" ? "#Institutions" : "#Individuals"}>

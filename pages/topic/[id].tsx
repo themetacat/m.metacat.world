@@ -3,7 +3,9 @@ import React from 'react';
 import cn from "classnames"
 
 import InfiniteScroll from 'react-infinite-scroll-component';
+
 import style from "./index.module.css"
+
 import Header from '../../components/header';
 import Cantact from '../../components/cantact';
 import ToTop from '../../components/jump-to-top';
@@ -66,8 +68,25 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
         [null],
     );
 
+    function getTextHeight() {
+        let noticeDom = document.getElementById("content");
+
+
+        let style = window.getComputedStyle(noticeDom, null);
+        let row = Math.ceil(
+
+            Number(style.height.replace("px", "")) /
+
+            Number(style.lineHeight.replace("px", ""))
+
+        );//总行高 / 每行行高
+
+
+    }
+
 
     React.useEffect(() => {
+        getTextHeight()
         setNav(true)
         window.addEventListener("scroll", function () {
             setNav(true)
@@ -123,7 +142,7 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
 
     React.useEffect(() => {
         const listener = () => {
-            if (document.getElementById('switch') && window.scrollY > 204) {
+            if (document.getElementById('switch') && window.scrollY > 260) {
                 setFixedState(true);
             } else {
                 setFixedState(false);

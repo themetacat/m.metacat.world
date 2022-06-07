@@ -118,13 +118,11 @@ export default function DaoWebglCard({ graphicId, initFinish, model, tabState, i
       sceneRef.current.userData.targetRotation = roatation;
     }
   }, []);
-
   const toDetail = React.useCallback(() => {
-
-    if (id) {
-      router.replace(`/wearables/detail/${model.id}?type=${id}`,)
+    if (tabState === "chinesered" || tabState === "pfp") {
+      router.replace(`/wearables/detail/${model.id}?type=${tabState}`)
     } else {
-      router.replace(`/wearables/detail/${model.id}`)
+      router.replace(`/wearables/detail/${model.id}?type=${id}`,)
     }
   }, [tabState, id])
 
