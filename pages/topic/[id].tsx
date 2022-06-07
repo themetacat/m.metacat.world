@@ -10,7 +10,6 @@ import ToTop from '../../components/jump-to-top';
 import Card from '../../components/card';
 import WearableCard from '../../components/wearabledaoCard'
 
-import { getTopicDetail, refreshToken, getBaseInfo } from '../../service';
 import api from '../../lib/test';
 
 const NAV = [
