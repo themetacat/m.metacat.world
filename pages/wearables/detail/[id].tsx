@@ -1,5 +1,5 @@
 import React from 'react'
-import { useRouter } from 'next/router';;
+import { useRouter } from 'next/router'
 import {
     Scene,
     PerspectiveCamera,
@@ -7,16 +7,19 @@ import {
     DirectionalLight,
     BoxHelper,
     WebGLRenderer,
-} from 'three';
-import cn from 'classnames';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { VOXLoader, VOXMesh } from 'three/examples/jsm/loaders/VOXLoader.js';
-import Header from '../../../components/header';
-import Cantact from '../../../components/cantact';
-import ToTop from '../../../components/jump-to-top';
-import style from './index.module.css';
-import api from '../../../lib/api';
-import z_api from '../../../lib/z_api';
+} from 'three'
+import cn from 'classnames'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { VOXLoader, VOXMesh } from 'three/examples/jsm/loaders/VOXLoader.js'
+
+import Header from '../../../components/header'
+import Cantact from '../../../components/cantact'
+import ToTop from '../../../components/jump-to-top'
+import style from './index.module.css'
+import z_api from '../../../lib/z_api'
+import api from '../../../lib/api'
+
+
 
 export default function Detail({ artwork, artist, id }) {
     const router = useRouter()
