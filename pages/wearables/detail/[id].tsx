@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { useRouter } from 'next/router';;
 import {
     Scene,
     PerspectiveCamera,
@@ -7,10 +8,12 @@ import {
     BoxHelper,
     WebGLRenderer,
 } from 'three';
+import { route } from 'next/dist/server/router';
+
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { VOXLoader, VOXMesh } from 'three/examples/jsm/loaders/VOXLoader.js';
 import cn from 'classnames';
-import { useRouter } from 'next/router';
+
 import Header from '../../../components/header';
 import Cantact from '../../../components/cantact';
 import ToTop from '../../../components/jump-to-top';
@@ -19,7 +22,6 @@ import style from './index.module.css';
 
 import api from '../../../lib/api';
 import z_api from '../../../lib/z_api';
-import { route } from 'next/dist/server/router';
 
 export default function Detail({ artwork, artist, id }) {
     const router = useRouter()
