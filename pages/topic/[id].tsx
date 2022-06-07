@@ -68,25 +68,25 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
         [null],
     );
 
-    function getTextHeight() {
-        let noticeDom = document.getElementById("content");
+    // function getTextHeight() {
+    //     let noticeDom = document.getElementById("content");
 
 
-        let style = window.getComputedStyle(noticeDom, null);
-        let row = Math.ceil(
+    //     let style = window.getComputedStyle(noticeDom, null);
+    //     let row = Math.ceil(
 
-            Number(style.height.replace("px", "")) /
+    //         Number(style.height.replace("px", "")) /
 
-            Number(style.lineHeight.replace("px", ""))
+    //         Number(style.lineHeight.replace("px", ""))
 
-        );//总行高 / 每行行高
+    //     );//总行高 / 每行行高
 
 
-    }
+    // }
 
 
     React.useEffect(() => {
-        getTextHeight()
+        // getTextHeight()
         setNav(true)
         window.addEventListener("scroll", function () {
             setNav(true)
