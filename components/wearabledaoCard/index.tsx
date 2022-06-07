@@ -173,7 +173,7 @@ export default function Card({ mb, card, tabState, id, name }: Props) {
     return <div className={cn(style.container, mb)}>
         <canvas
             className={cn(
-                style.graphicAll
+                name ? style.all : style.graphicAll
             )}
             ref={canvaRef}
         ></canvas>
