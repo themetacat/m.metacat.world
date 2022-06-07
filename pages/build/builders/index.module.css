@@ -90,6 +90,9 @@
   display: flex;
   justify-content: center;
 }
+.bg img {
+  width: 100%;
+}
 .fixed {
   position: fixed;
   top: 48px;
