@@ -122,7 +122,6 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
     }, [])
 
     React.useEffect(() => {
-        countLines()
         const listener = () => {
             if (document.getElementById('switch') && window.scrollY > 204) {
                 setFixedState(true);
@@ -132,7 +131,7 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
         };
         document.addEventListener('scroll', listener);
         return () => document.removeEventListener('scroll', listener);
-    }, [fixedState, countLines]);
+    }, [fixedState]);
 
     return (
         <div className={style.container}>
