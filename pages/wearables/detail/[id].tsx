@@ -19,6 +19,7 @@ import style from './index.module.css';
 
 import api from '../../../lib/api';
 import z_api from '../../../lib/z_api';
+import { route } from 'next/dist/server/router';
 
 export default function Detail({ artwork, artist, id }) {
     const router = useRouter()
@@ -147,7 +148,11 @@ export default function Detail({ artwork, artist, id }) {
     }, [contact]);
 
     const toWearableDao = React.useCallback(() => {
-        router.replace(`/wearables/wearabledao`)
+        if (router.query.type) {
+            router.replace(`/topic/${router.query.type}?type=wearables`)
+        } else {
+            router.replace(`/wearables/wearabledao`)
+        }
 
     }, [router.query.type])
 

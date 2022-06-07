@@ -106,7 +106,7 @@ export default function Buildings() {
     }, [])
 
     const toTopic = React.useCallback((id, c) => {
-        window.open(`/topic/${id}`);
+        window.open(`/topic/${id}?type=buildings`);
     }, []);
     return (
         <div className={style.container}>

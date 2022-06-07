@@ -11,8 +11,9 @@ type Props = {
     mb?: string
     card?
     tabState?
+    id?
 }
-export default function Card({ mb, card, tabState }: Props) {
+export default function Card({ mb, card, tabState, id }: Props) {
     const [allScene, setAllScene] = React.useState([]);
     const renderer = React.useRef(null);
     const canvaRef = React.useRef(null);
@@ -126,6 +127,7 @@ export default function Card({ mb, card, tabState }: Props) {
         const modelEle = card.map((cd, idx) => {
             return (
                 <DaoWebglCard
+                    id={id}
                     model={cd}
                     key={uuid()}
                     graphicId={`dao-${idx.toString()}`}

@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from "classnames"
-import { useRouter } from "next/router"
+import { useRouter, withRouter } from "next/router"
 
 import style from "./index.module.css";
 import Header from '../../components/header';
@@ -22,7 +22,7 @@ const TAB = [
         link: '/wearables/wearabledao',
     },
 ]
-export default function wearables() {
+function wearables(r) {
     const router = useRouter()
     const [contact, setContact] = React.useState(false);
     const [wxState, setWxState] = React.useState(false);
@@ -36,6 +36,7 @@ export default function wearables() {
         const result = await req_wearable_creators()
         if (result.code === 100000) {
             setData(result.data)
+
         }
     }, [])
     const handlerHeader = React.useCallback((label, t) => {
@@ -70,7 +71,14 @@ export default function wearables() {
 
     React.useEffect(() => {
         requestData()
-    }, [requestData])
+        if (r.router.query.type) {
+            if (r.router.query.type === "wearabledao") {
+                router.replace(`/wearables/wearabledao?type=chinesered`)
+            } else {
+                router.replace(`/wearables/wearabledao?type=pfp`)
+            }
+        }
+    }, [requestData, r])
 
     React.useEffect(() => {
         setNav(true)
@@ -79,8 +87,8 @@ export default function wearables() {
         })
     }, [])
 
-    const toTopic = React.useCallback((id, c) => {
-        window.open(`/topic/${c}`);
+    const toTopic = React.useCallback((id, c, b) => {
+        window.open(`/topic/${c}?type=${b === 1 ? "buildings" : "wearables"}`);
     }, []);
     return (
         <div className={style.container}>
@@ -123,3 +131,5 @@ export default function wearables() {
         </div>
     )
 }
+
+export default withRouter(wearables)

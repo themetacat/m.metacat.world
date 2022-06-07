@@ -1,5 +1,6 @@
 import React from 'react';
 import cn from "classnames"
+import { useRouter } from "next/router"
 import InfiniteScroll from 'react-infinite-scroll-component';
 import style from "./index.module.css"
 import Header from '../../components/header';
@@ -17,28 +18,29 @@ const NAV = [
         type: 'buildings',
     },
     {
-        label: 'Wearable',
+        label: 'Wearables',
         type: 'wearables',
     },
 ];
 
 
 export default function Topic({ base_info, parcel_list, traffic_list, wearable }) {
+    const router = useRouter()
     const [contact, setContact] = React.useState(false);
     const [wxState, setWxState] = React.useState(false);
+
 
     const [baseInfo, setBaseInfo] = React.useState(base_info);
     const [parcelList, setParcelList] = React.useState(parcel_list);
     const [trafficList, setTrafficList] = React.useState(traffic_list);
     const [nav, setNav] = React.useState(null);
-    const [tabState, setTabState] = React.useState(parcel_list ? "buildings" : "wearables")
+    const [tabState, setTabState] = React.useState(router.query.type || "buildings")
     const [textState, setTextState] = React.useState(false)
     const [fixedState, setFixedState] = React.useState(false)
     const [searchText, setSearchText] = React.useState("")
     const [originParcelList, setOriginParcelList] = React.useState(parcel_list);
     const [wearables, setWearables] = React.useState(wearable)
     const [originWearables, setOriginWearables] = React.useState(wearable)
-
 
     const f1 = fixedState && wearable ? style.fixed : null
     // const f2 = fixedState && !wearable ?  : null
@@ -82,6 +84,29 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
     }, [contact]);
 
 
+    function countLines() {
+
+        // Get element with 'content' as id                            
+
+        let el = document.getElementById('content');
+
+        // Get total height of the content    
+
+        let divHeight = el.offsetHeight
+
+        console.log(divHeight)
+
+        // obj,countLinesect.style.lineHeight, returns 
+
+        // the lineHeight property
+
+        // height of one line 
+        // let lineHeight = Number(el.style.lineHeight);
+        console.log(el.fontSize)
+        // let lines = divHeight / lineHeight;
+
+    }
+
 
     const search = React.useCallback(() => {
         if (tabState === 'buildings') {
@@ -120,6 +145,7 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
     }, [])
 
     React.useEffect(() => {
+        countLines()
         const listener = () => {
             if (document.getElementById('switch') && window.scrollY > 204) {
                 setFixedState(true);
@@ -129,7 +155,7 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
         };
         document.addEventListener('scroll', listener);
         return () => document.removeEventListener('scroll', listener);
-    }, [fixedState]);
+    }, [fixedState, countLines]);
 
     return (
         <div className={style.container}>
@@ -161,14 +187,17 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
                     </div> : null}
                 </div>
 
-                <div className={cn(style.text)}>{baseInfo.description}
+                <div className={cn(style.text)} id="content">{baseInfo.description}
                 </div>
             </div>
             {
                 parcel_list && wearables ? <div className={cn(style.nav, f1)}>
                     {NAV.map((i, idx) => {
                         return <div className={cn(style.item, tabState === i.type ? style.ac : null)}
-                            onClick={() => { setTabState(i.type) }}
+                            onClick={() => {
+                                setTabState(i.type)
+                                router.replace(`/topic/${router.query.id}?type=${i.type}`)
+                            }}
                             key={idx}
                         >
                             {i.label}
@@ -202,7 +231,7 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
                     next={scrollLoading}
                     loader={<div className={style.bottom}></div>}
                 >
-                    <WearableCard card={wearables} tabState={tabState} ></WearableCard>
+                    <WearableCard card={wearables} tabState={tabState} id={router.query.id}></WearableCard>
                 </InfiniteScroll > : null}
             </div>
             {contact ? zhezhao : null}
@@ -213,6 +242,7 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
 }
 
 export async function getServerSideProps(context) {
+
     let res = null;
     if (Number(context.params.id)) {
         const topic = Number(context.params.id);
