@@ -13,9 +13,9 @@ type Props = {
     tabState?
     id?
     name?
-
+    length?
 }
-export default function Card({ mb, card, tabState, id, name }: Props) {
+export default function Card({ mb, card, tabState, id, name, length, }: Props) {
     const [allScene, setAllScene] = React.useState([]);
     const renderer = React.useRef(null);
     const canvaRef = React.useRef(null);
@@ -128,17 +128,19 @@ export default function Card({ mb, card, tabState, id, name }: Props) {
         }
         const modelEle = card.map((cd, idx) => {
             return (
-                <DaoWebglCard
+                < DaoWebglCard
                     id={id}
                     name={name}
                     model={cd}
                     key={uuid()}
-                    graphicId={`dao-${idx.toString()}`}
+                    graphicId={`dao-${idx.toString()}`
+                    }
                     tabState={tabState}
                     initFinish={(se) => {
                         scenes.push(se);
-                    }}
-                ></DaoWebglCard>
+                    }
+                    }
+                ></ DaoWebglCard>
             );
         });
         setAllScene(scenes);
@@ -173,7 +175,10 @@ export default function Card({ mb, card, tabState, id, name }: Props) {
     return <div className={cn(style.container, mb)}>
         <canvas
             className={cn(
-                name ? style.all : style.graphicAll
+                length === 1 ? style.s1 : null,
+                length === 2 ? style.s2 : null,
+                length === 3 ? style.s3 : null,
+                length >= 4 || !length ? style.graphicAll : null
             )}
             ref={canvaRef}
         ></canvas>

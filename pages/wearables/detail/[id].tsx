@@ -172,9 +172,9 @@ export default function Detail({ artwork, artist, id }) {
         <Header onClick={handlerHeader} text={"Wearables"} nav={nav} />
         <div className={style.nav}>
             <div onClick={toWearableDao}>
-            {router.query.type === "chinesered" ? "Chinesered" : null}
-            {router.query.type === "pfp" ? "PFP" : null}
-            {router.query.type !== "chinesered" && router.query.type !== "pfp" ? router.query.name : null}
+                {router.query.type === "chinesered" ? "Chinesered" : null}
+                {router.query.type === "pfp" ? "PFP" : null}
+                {router.query.type !== "chinesered" && router.query.type !== "pfp" ? router.query.name : null}
             </div>
             <img src="/images/you.png" />
             <div className={style.name}>{artwork.name}</div>
@@ -223,7 +223,7 @@ export default function Detail({ artwork, artist, id }) {
 export async function getServerSideProps(context) {
     let res = null
     const { id } = context.params;
-    if (context.query.type === "pfp") {
+    if (context.query.type === "pfp" || context.query.form === "pfp_wearable") {
         res = await z_api.req_pfp_detail(id)
     } else {
         res = await api.getDaoWearableDetail(id);

@@ -31,6 +31,7 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
     const [contact, setContact] = React.useState(false);
     const [wxState, setWxState] = React.useState(false);
 
+    console.log(wearable)
 
     const [baseInfo, setBaseInfo] = React.useState(base_info);
     const [parcelList, setParcelList] = React.useState(parcel_list);
@@ -226,7 +227,8 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
                     next={scrollLoading}
                     loader={<div className={style.bottom}></div>}
                 >
-                    <WearableCard card={wearables} tabState={tabState} id={router.query.id} name={baseInfo.name}></WearableCard>
+                    <WearableCard card={wearables} 
+                    tabState={tabState} id={router.query.id} name={baseInfo.name} length={wearables.length}></WearableCard>
                 </InfiniteScroll > : null}
             </div>
             {contact ? zhezhao : null}

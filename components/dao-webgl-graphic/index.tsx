@@ -43,7 +43,7 @@ interface Props {
 
 
 
-export default function DaoWebglCard({ graphicId, initFinish, model, tabState, id, name }: Props) {
+export default function DaoWebglCard({ graphicId, initFinish, model, tabState, id, name, }: Props) {
   const router = useRouter();
   const sceneRef = React.useRef(null);
 
@@ -123,9 +123,9 @@ export default function DaoWebglCard({ graphicId, initFinish, model, tabState, i
     if (tabState === "chinesered" || tabState === "pfp") {
       router.replace(`/wearables/detail/${model.id}?type=${tabState}`)
     } else {
-      router.replace(`/wearables/detail/${model.id}?type=${id}&name=${name}`,)
+      router.replace(`/wearables/detail/${model.id}?type=${id}&name=${name}&form=${model.type}`,)
     }
-  }, [tabState, id])
+  }, [tabState, id, name])
 
 
   const toOpensea = React.useCallback(() => {

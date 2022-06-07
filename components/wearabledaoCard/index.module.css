@@ -1,9 +1,27 @@
 .container {
   position: relative;
 }
+.container .s1 {
+  width: 355px;
+  min-height: 260px;
+  max-height: 100%;
+  position: absolute;
+}
+.container .s2 {
+  width: 355px;
+  min-height: 550px;
+  max-height: 100%;
+  position: absolute;
+}
+.container .s3 {
+  width: 355px;
+  min-height: 850px;
+  max-height: 100%;
+  position: absolute;
+}
 .container .graphicAll {
   width: 355px;
-  min-height: 800px;
+  min-height: 1000px;
   max-height: 100%;
   position: absolute;
 }
@@ -69,10 +87,4 @@
   left: 0px;
   box-sizing: border-box;
   top: 0px;
-}
-.all {
-  width: 355px;
-  min-height: 260px;
-  max-height: 100%;
-  position: absolute;
 }
