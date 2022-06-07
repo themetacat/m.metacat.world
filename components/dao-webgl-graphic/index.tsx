@@ -30,6 +30,7 @@ type DaoCard = {
   artwork?: Artwork;
   artist?: DaoArtist;
   id?: string;
+  type?
 };
 
 interface Props {
