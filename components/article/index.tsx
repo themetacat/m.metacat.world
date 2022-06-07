@@ -35,13 +35,15 @@ export default function Event({
 
   return (
     <div className={cn(style.container, mt)} onClick={toParcel}>
-      <img src={cover_img_url} className={style.img} />
+      <div className={style.ov}>
+        <img src={cover_img_url} className={style.img} />
+      </div>
       <div className={style.detail}>
         <div className={style.title}>{title}</div>
         <div className={style.d}>
-            <div>{time}</div>
-            <div className={style.source}>{source}</div>
-            <div>{author}</div>
+          <div>{time}</div>
+          <div className={style.source}>{source}</div>
+          <div>{author}</div>
         </div>
         <div className={style.text}>{desc}</div>
 

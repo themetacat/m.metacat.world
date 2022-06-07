@@ -750,6 +750,53 @@ class API {
 
     return json;
   }
+
+
+
+  // 4.4 获取 builders 列表接口
+
+  public async req_buid_builders_list() {
+    // const url = `${this.url}/get_build_builders_list`
+    const url = `${this.url}/get_build_builders_list`;
+    const result = await fetch(url, {
+      method: 'get',
+      mode: 'cors',
+    });
+    const json = await result.json();
+    return json;
+  }
+
+  // 9.7 获取 Wearable creator 数据接口
+  public async req_wearable_creators() {
+    const url = `${this.url}/wearable/get_wearable_creators`;
+
+    const result = await fetch(url, {
+      method: 'get',
+      mode: 'cors',
+    });
+    const json = await result.json();
+
+    return json;
+  }
+
+  // 4.2 获取 Topic 详情页信息接口
+
+  public async req_topic_detail(id: number, creator: string) {
+    let search = null;
+    if (id) {
+      search = qs.stringify({ id }, { addQueryPrefix: true });
+    } else {
+      search = qs.stringify({ creator }, { addQueryPrefix: true });
+    }
+    const url = `${this.url}/get_topic_detail${search}`;
+    const result = await fetch(url, {
+      method: 'get',
+      mode: 'cors',
+    });
+    const json = await result.json();
+
+    return json;
+  }
 }
 
 export default new API('https://api.metacat.world/api/v1');

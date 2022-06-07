@@ -15,7 +15,11 @@ export default function Card({ img_url_list, name, topic_id, mb }: Props) {
             <div className={cn(style.container, mb)}>
                 <div className={style.imgContainer}>
                     {img_url_list.map((i) => {
-                        return <img src={i} className={style.img} />
+                        if (i === "https://poster-phi.vercel.app/metacat_logo.png") {
+                            return <div className={style.i}><img src={i} className={style.img} /></div>
+                        }
+                        return <img src={i} className={style.img2} />
+
                     })}
                 </div>
                 <div className={style.text}>

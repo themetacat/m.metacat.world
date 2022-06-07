@@ -30,6 +30,7 @@ type DaoCard = {
   artwork?: Artwork;
   artist?: DaoArtist;
   id?: string;
+  type?
 };
 
 interface Props {
@@ -37,11 +38,13 @@ interface Props {
   initFinish?: (se) => void;
   model?: DaoCard;
   tabState?
+  id?
+  name?
 }
 
 
 
-export default function DaoWebglCard({ graphicId, initFinish, model, tabState }: Props) {
+export default function DaoWebglCard({ graphicId, initFinish, model, tabState, id, name, }: Props) {
   const router = useRouter();
   const sceneRef = React.useRef(null);
 
@@ -117,12 +120,13 @@ export default function DaoWebglCard({ graphicId, initFinish, model, tabState }:
       sceneRef.current.userData.targetRotation = roatation;
     }
   }, []);
-
-
   const toDetail = React.useCallback(() => {
-
-    router.replace(`/wearables/detail/${model.id}?type=${tabState}`)
-  }, [tabState])
+    if (tabState === "chinesered" || tabState === "pfp") {
+      router.replace(`/wearables/detail/${model.id}?type=${tabState}`)
+    } else {
+      router.replace(`/wearables/detail/${model.id}?type=${id}&name=${name}&form=${model.type}`,)
+    }
+  }, [tabState, id, name])
 
 
   const toOpensea = React.useCallback(() => {

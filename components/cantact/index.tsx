@@ -21,6 +21,14 @@ const lianxi = [
     icon: '/images/weixin.png',
   },
   {
+    label: "Mirror",
+    icon: "/images/mirror.png",
+  },
+  {
+    label: "YouTube",
+    icon: "/images/YouTube.svg",
+  },
+  {
     label: 'metacat@tutanota.com',
     icon: '/images/youxiang.png',
   },
@@ -78,11 +86,23 @@ export default function Cantact({ onClick }: Props) {
             <img src={lianxi[3].icon} />
             <div>{lianxi[3].label}</div>
           </div>
-
-          <a href="mailto:metacat@tutanota.com" data-tip="metacat@tutanota.com">
+          <a href="https://mirror.xyz/0xE069160b21d23fB8Edad4F8B42f6b91f7b77F22A">
             <div className={style.item}>
               <img src={lianxi[4].icon} />
               <div>{lianxi[4].label}</div>
+            </div>
+          </a>
+          <a href="https://www.youtube.com/channel/UCeZkqQ-CsIxjKeQJx3zOSGA">
+            <div className={style.item}>
+              <img className={style.YouTube} src={lianxi[5].icon} />
+              <div >{lianxi[5].label}</div>
+            </div>
+          </a>
+
+          <a href="mailto:metacat@tutanota.com" data-tip="metacat@tutanota.com">
+            <div className={style.item}>
+              <img src={lianxi[6].icon} />
+              <div>{lianxi[6].label}</div>
             </div>
           </a>
         </div>

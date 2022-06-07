@@ -1,0 +1,156 @@
+.container {
+  height: 100%;
+  min-height: 1000px;
+  background: #0f191b;
+}
+.wx {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99999999;
+  margin: auto;
+  border: 18px solid rgba(0, 208, 236, 0.2);
+}
+.navContainer {
+  height: 48px;
+  width: 100%;
+  background-color: #000;
+  padding-top: 11px;
+  position: relative;
+  display: flex;
+  padding-left: 12px;
+  margin-top: 48px;
+}
+.navContainer .bg {
+  width: 100%;
+  height: 36px;
+  border-bottom: 1px solid #00d0ec;
+  position: absolute;
+  left: 0;
+}
+.navContainer .item {
+  width: 97px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  background-color: rgba(0, 236, 222, 0.05);
+  color: #aaaaaa;
+  font-weight: 400;
+  font-size: 14px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid #00d0ec;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navContainer .item img {
+  width: 16px;
+  height: 16px;
+  display: block;
+  margin-right: 5px;
+}
+.navContainer .action {
+  background: rgba(0, 236, 222, 0.05);
+  border: 0.5px solid #00d0ec;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  border-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  border-bottom: 1px solid #0f191b;
+}
+.twoNav {
+  width: 100%;
+  height: 38px;
+  background: #0e2b30;
+  padding: 0 15px;
+  line-height: 38px;
+  display: flex;
+  color: #999;
+  font-weight: 400;
+  font-size: 12px;
+}
+.twoNav .twoNavItem {
+  margin-right: 30px;
+  box-sizing: border-box;
+}
+.twoNav .action {
+  border-bottom: 2px solid #00d0ec;
+  color: #fff;
+}
+.bg {
+  background: #000;
+  display: flex;
+  justify-content: center;
+}
+.fixed {
+  position: fixed;
+  top: 48px;
+  right: 0;
+  left: 0;
+  z-index: 9999;
+  margin: 0 auto;
+  background-color: #000;
+}
+.fix {
+  position: fixed;
+  top: 95px;
+  right: 0;
+  left: 0;
+  z-index: 9999;
+  margin: 0 auto;
+  background: #0e2b30;
+}
+.cardList {
+  background: #0f191b;
+  padding: 0 12px;
+}
+.cardList .title {
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  display: flex;
+  position: relative;
+  padding: 20px 0 10px 0;
+}
+.cardList .title div {
+  width: 2px;
+  height: 12px;
+  background-color: #00d0ec;
+  margin-top: 3px;
+  margin-right: 8px;
+}
+.cardList .title .Institutions {
+  position: absolute;
+  left: 0;
+  top: -60px;
+  width: 2px;
+  height: 12px;
+  background: rgba(0, 0, 0, 0);
+}
+.cardList .title .Individuals {
+  position: absolute;
+  left: 0;
+  top: -30px;
+  width: 2px;
+  height: 12px;
+  background: rgba(0, 0, 0, 0);
+}
+.c {
+  background: #0f191b;
+  min-height: 500px;
+  width: 100%;
+}
+.loading {
+  width: 30px;
+  height: 30px;
+  display: block;
+  margin: 80px auto;
+}

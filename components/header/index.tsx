@@ -3,12 +3,15 @@ import cn from 'classnames';
 import Link from 'next/link';
 import style from './index.module.css';
 
+import TwoNavigation from "../towNavigation"
+
+
 const page = [
   {
     label: 'Home',
   },
   {
-    label: 'Builders',
+    label: 'Build',
   },
   {
     label: 'Wearables',
@@ -21,14 +24,43 @@ const page = [
   },
 ];
 
+const build = [
+  {
+    label: "Builders",
+    type: "builders",
+    link: '/build/builders',
+  },
+  {
+    label: "Buildings",
+    type: "buildings",
+    link: '/build/buildings',
+  }
+]
+const wearable = [
+  {
+    label: 'Creators',
+    type: 'creators',
+    link: '/wearables',
+  },
+  {
+    label: 'WearableDao',
+    type: 'wearabledao',
+    link: '/wearables/wearabledao?type=chinesered',
+  },
+];
+
 type Props = {
   onClick?;
   text: string;
+  nav?
 };
 
-export default function Header({ onClick, text }: Props) {
+export default function Header({ onClick, text, nav }: Props) {
   const [navState, setNavState] = React.useState(false);
   const [pageState, setPageState] = React.useState(text || page[0].label);
+
+  const [buildState, setBuildState] = React.useState(false)
+  const [wearablesState, setWearableState] = React.useState(false)
 
   const changePage = React.useCallback(() => {
     setNavState(!navState);
@@ -46,34 +78,37 @@ export default function Header({ onClick, text }: Props) {
             onClick(page[0].label);
           }}
         >
-          <Link href="/" >
+          <Link href="/" prefetch>
             {page[0].label}
           </Link >
         </li>
         <li className={cn(style.item, pageState === page[1].label ? style.action : null)}
           onClick={() => {
             onClick(page[1].label);
-
+            setBuildState(!buildState)
+            setWearableState(false)
+            setPageState(page[1].label)
           }}>
-          <Link href='/builders'>
-            {page[1].label}
-          </Link>
+          {page[1].label}
+          {buildState ? <TwoNavigation options={build}></TwoNavigation> : null}
         </li>
         <li className={cn(style.item, pageState === page[2].label ? style.action : null)}
           onClick={() => {
             onClick(page[2].label);
-
-          }}>
-          <Link href='/wearables?type=wearabledao'>
-            {page[2].label}
-          </Link>
+            setWearableState(!wearablesState)
+            setBuildState(false)
+            setPageState(page[2].label)
+          }}
+        >
+          {page[2].label}
+          {wearablesState ? <TwoNavigation options={wearable}></TwoNavigation> : null}
         </li>
         <li className={cn(style.item, pageState === page[3].label ? style.action : null)}
           onClick={() => {
             onClick(page[3].label);
 
           }}>
-          <Link href='/learn?type=articles'>
+          <Link href='/learn?type=articles' prefetch>
             {page[3].label}
           </Link>
 
@@ -81,7 +116,7 @@ export default function Header({ onClick, text }: Props) {
         <li
           className={cn(style.item, pageState === page[4].label ? style.action : null)}
           onClick={() => {
-            onClick(page[4].label);
+            onClick(page[4].label, true);
           }}
         >
           {page[4].label}
@@ -96,7 +131,11 @@ export default function Header({ onClick, text }: Props) {
     //         }
     //     }} className={cn(style.item, pageState === item.label ? style.action : null)}>{item.label}</li>
     // })
-  }, []);
+  }, [buildState, wearablesState]);
+
+  React.useEffect(() => {
+    setNavState(!nav)
+  }, [nav])
   return (
     <div className={style.container}>
       <div className={style.header_left}>
@@ -105,9 +144,11 @@ export default function Header({ onClick, text }: Props) {
         </Link>
         <div className={style.title}>METACAT</div>
       </div>
-      <div className={style.pr}>
+      <div className={style.pr} onClick={() => {
+        onClick(null, false)
+      }}>
         <img src="/images/caidan.png" className={style.header_right} onClick={changePage} />
-        {navState ? <ul className={style.pageList}>{rander}</ul> : null}
+        {navState && !nav ? <ul className={style.pageList}>{rander}</ul> : null}
       </div>
     </div>
   );

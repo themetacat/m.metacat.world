@@ -11,6 +11,7 @@
 .container .buttom {
   position: relative;
   display: flex;
+  align-items: center;
 }
 .container .buttom img {
   width: 16px;
@@ -23,7 +24,7 @@
   font-size: 12px;
   font-style: normal;
 }
-.container .buttom input {
+.container .buttom form input {
   color: #fff;
   font-size: 12px;
   background-color: #0e2b30;
@@ -40,7 +41,8 @@
 }
 .container .buttom .close {
   position: absolute;
-  top: 2px;
+  top: 50%;
+  margin-top: -8px;
   right: 0;
 }
 .guodu {

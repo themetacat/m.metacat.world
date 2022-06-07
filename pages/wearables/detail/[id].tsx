@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { useRouter } from 'next/router'
 import {
     Scene,
     PerspectiveCamera,
@@ -6,19 +7,19 @@ import {
     DirectionalLight,
     BoxHelper,
     WebGLRenderer,
-} from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { VOXLoader, VOXMesh } from 'three/examples/jsm/loaders/VOXLoader.js';
-import cn from 'classnames';
-import { useRouter } from 'next/router';
-import Header from '../../../components/header';
-import Cantact from '../../../components/cantact';
-import ToTop from '../../../components/jump-to-top';
+} from 'three'
+import cn from 'classnames'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { VOXLoader, VOXMesh } from 'three/examples/jsm/loaders/VOXLoader.js'
 
-import style from './index.module.css';
+import Header from '../../../components/header'
+import Cantact from '../../../components/cantact'
+import ToTop from '../../../components/jump-to-top'
+import style from './index.module.css'
+import z_api from '../../../lib/z_api'
+import api from '../../../lib/api'
 
-import api from '../../../lib/api';
-import z_api from '../../../lib/z_api';
+
 
 export default function Detail({ artwork, artist, id }) {
     const router = useRouter()
@@ -32,6 +33,9 @@ export default function Detail({ artwork, artist, id }) {
     const renderer = React.useRef(null);
     const animationRef = React.useRef(null);
     const [intro, setIntro] = React.useState(true);
+
+
+    const [nav, setNav] = React.useState(null);
 
     const removeIntro = React.useCallback(() => {
         setIntro(false);
@@ -128,10 +132,11 @@ export default function Detail({ artwork, artist, id }) {
 
 
 
-    const handlerHeader = React.useCallback((label) => {
+    const handlerHeader = React.useCallback((label, t) => {
         if (label === 'Contact Us') {
             setContact(true);
         }
+        setNav(t)
     }, []);
 
     const changeContactState = React.useCallback((state, wxstate) => {
@@ -143,7 +148,11 @@ export default function Detail({ artwork, artist, id }) {
     }, [contact]);
 
     const toWearableDao = React.useCallback(() => {
-        router.replace(`/wearables?type=${router.query.type}`)
+        if (router.query.type === "chinesered" || router.query.type === "pfp") {
+            router.replace(`/wearables/wearabledao?type=${router.query.type}`)
+        } else {
+            router.replace(`/topic/${router.query.type}?type=wearables`)
+        }
 
     }, [router.query.type])
 
@@ -152,11 +161,21 @@ export default function Detail({ artwork, artist, id }) {
     }, []);
 
 
+    React.useEffect(() => {
+        setNav(true)
+        window.addEventListener("scroll", function () {
+            setNav(true)
+        })
+    }, [])
 
     return <div className={style.con}>
-        <Header onClick={handlerHeader} text={"Wearables"} />
+        <Header onClick={handlerHeader} text={"Wearables"} nav={nav} />
         <div className={style.nav}>
-            <div onClick={toWearableDao}>{router.query.type === "pfp" ? "PFP" : "WearableDao"}</div>
+            <div onClick={toWearableDao}>
+                {router.query.type === "chinesered" ? "Chinese Red" : null}
+                {router.query.type === "pfp" ? "PFP" : null}
+                {router.query.type !== "chinesered" && router.query.type !== "pfp" ? router.query.name : null}
+            </div>
             <img src="/images/you.png" />
             <div className={style.name}>{artwork.name}</div>
         </div>
@@ -204,7 +223,7 @@ export default function Detail({ artwork, artist, id }) {
 export async function getServerSideProps(context) {
     let res = null
     const { id } = context.params;
-    if (context.query.type === "pfp") {
+    if (context.query.type === "pfp" || context.query.form === "pfp_wearable") {
         res = await z_api.req_pfp_detail(id)
     } else {
         res = await api.getDaoWearableDetail(id);
