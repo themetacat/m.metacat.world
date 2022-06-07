@@ -226,7 +226,7 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
                     next={scrollLoading}
                     loader={<div className={style.bottom}></div>}
                 >
-                    <WearableCard card={wearables} tabState={tabState} id={router.query.id}></WearableCard>
+                    <WearableCard card={wearables} tabState={tabState} id={router.query.id} name={baseInfo.name}></WearableCard>
                 </InfiniteScroll > : null}
             </div>
             {contact ? zhezhao : null}

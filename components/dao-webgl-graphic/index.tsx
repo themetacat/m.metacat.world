@@ -38,11 +38,12 @@ interface Props {
   model?: DaoCard;
   tabState?
   id?
+  name?
 }
 
 
 
-export default function DaoWebglCard({ graphicId, initFinish, model, tabState, id }: Props) {
+export default function DaoWebglCard({ graphicId, initFinish, model, tabState, id, name }: Props) {
   const router = useRouter();
   const sceneRef = React.useRef(null);
 
@@ -122,7 +123,7 @@ export default function DaoWebglCard({ graphicId, initFinish, model, tabState, i
     if (tabState === "chinesered" || tabState === "pfp") {
       router.replace(`/wearables/detail/${model.id}?type=${tabState}`)
     } else {
-      router.replace(`/wearables/detail/${model.id}?type=${id}`,)
+      router.replace(`/wearables/detail/${model.id}?type=${id}&name=${name}`,)
     }
   }, [tabState, id])
 

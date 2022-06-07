@@ -168,14 +168,13 @@ export default function Detail({ artwork, artist, id }) {
         })
     }, [])
 
-
     return <div className={style.con}>
         <Header onClick={handlerHeader} text={"Wearables"} nav={nav} />
         <div className={style.nav}>
             <div onClick={toWearableDao}>
-                {router.query.type === "chinesered" ? "Chinesered" : null}
-                {router.query.type === "pfp" ? "PFP" : null}
-                {router.query.type !== "chinesered" && router.query.type !== "pfp" ? router.query.type : null}
+            {router.query.type === "chinesered" ? "Chinesered" : null}
+            {router.query.type === "pfp" ? "PFP" : null}
+            {router.query.type !== "chinesered" && router.query.type !== "pfp" ? router.query.name : null}
             </div>
             <img src="/images/you.png" />
             <div className={style.name}>{artwork.name}</div>
