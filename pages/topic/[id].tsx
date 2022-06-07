@@ -1,6 +1,7 @@
+import { useRouter } from "next/router"
 import React from 'react';
 import cn from "classnames"
-import { useRouter } from "next/router"
+
 import InfiniteScroll from 'react-infinite-scroll-component';
 import style from "./index.module.css"
 import Header from '../../components/header';
