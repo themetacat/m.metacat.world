@@ -8,18 +8,13 @@ import {
     BoxHelper,
     WebGLRenderer,
 } from 'three';
-import { route } from 'next/dist/server/router';
-
+import cn from 'classnames';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { VOXLoader, VOXMesh } from 'three/examples/jsm/loaders/VOXLoader.js';
-import cn from 'classnames';
-
 import Header from '../../../components/header';
 import Cantact from '../../../components/cantact';
 import ToTop from '../../../components/jump-to-top';
-
 import style from './index.module.css';
-
 import api from '../../../lib/api';
 import z_api from '../../../lib/z_api';
 
