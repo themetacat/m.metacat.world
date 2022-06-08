@@ -20,11 +20,18 @@ export default function Search({ onSearch }: Props) {
     setText(e.target.value);
   }, []);
 
+
+  React.useEffect(() => {
+    document.getElementById("search_form").onsubmit = function (e) {
+      onSearch(text);
+    }
+  }, [text])
   return (
     <div className={cn(style.container, inputState ? style.guodu : null)}>
       <div className={style.buttom} onClick={changeInput}>
         <img src="/images/search.png" />
         {inputState ? null : <div>Search</div>}
+        <form target="frameFile" id="search_form">
           <input
             type="search"
             id="input"
@@ -37,6 +44,8 @@ export default function Search({ onSearch }: Props) {
             }}
             className={inputState ? style.w2 : style.w1}
           />
+          <iframe name='frameFile' className={style.dn}></iframe>
+        </form>
         {text ? (
           <img
             src="/images/close.png"
