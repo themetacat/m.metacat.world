@@ -25,7 +25,6 @@ export default function Search({ onSearch }: Props) {
       <div className={style.buttom} onClick={changeInput}>
         <img src="/images/search.png" />
         {inputState ? null : <div>Search</div>}
-        <form action="">
           <input
             type="search"
             id="input"
@@ -38,7 +37,6 @@ export default function Search({ onSearch }: Props) {
             }}
             className={inputState ? style.w2 : style.w1}
           />
-        </form>
         {text ? (
           <img
             src="/images/close.png"
