@@ -26,7 +26,7 @@ export default function Search({ onSearch }: Props) {
         <img src="/images/search.png" />
         {inputState ? null : <div>Search</div>}
         <input
-          type="text"
+          type="search"
           id="input"
           value={text}
           onInput={changeText}

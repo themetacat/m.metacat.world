@@ -27,7 +27,7 @@ export default function Search({ onSearch }: Props) {
         {inputState ? null : <div>Search</div>}
         <form action="">
           <input
-            type="text"
+            type="search"
             id="input"
             value={text}
             onInput={changeText}

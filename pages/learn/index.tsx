@@ -105,18 +105,8 @@ export default function Learn() {
                 requestData(page, count, langState, tabState);
             }
             setSearchText(text);
-            // const data = await requestData({
-            //     tab: tabState,
-            //     subTab: subTabState,
-            //     query: text,
-            //     page: 1,
-            //     type: typeState,
-            //     needUpdateTypeList: true,
-            // });
-
-            // setDataSource(data);
         },
-        [],
+        [dataSource, requestData],
     );
 
     const changeLangState = React.useCallback(
@@ -166,8 +156,8 @@ export default function Learn() {
                 <div></div>
                 <div className={style.toright}>
 
+                    <Search onSearch={onSearchHandler}></Search>
                     <div onClick={() => { setShowLangState(false) }}>
-                        <Search onSearch={onSearchHandler}></Search>
                     </div>
                     <div className={cn(style.language, showLangState ? style.active : null)} onClick={() => { setShowLangState(!showLangState) }}>
                         {langLabel}
