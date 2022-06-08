@@ -59,7 +59,7 @@ export default function Builders() {
 
     const rander = React.useMemo(() => {
         return (
-            <div className={style.list}>
+            <div className={style.list} onClick={() => { setNav(true) }}>
                 {data.map((card) => {
                     return <BuilderCard {...card} mb={style.marginbottom}></BuilderCard>
                 })}
@@ -98,12 +98,13 @@ export default function Builders() {
     return (
         <div className={style.container}>
             <Header onClick={handlerHeader} text={'Build'} nav={nav}></Header>
-            <div className={cn(style.navContainer, fixedState ? style.fixed : null)} id="switch">
+            <div className={cn(style.navContainer, fixedState ? style.fixed : null)} id="switch" onClick={() => { setNav(true) }}>
                 <div className={style.bg}></div>
                 {TAB.map((item, idx) => {
                     return (
                         <div className={cn(style.item, tabState === item.type ? style.action : null)} key={idx} onClick={() => {
                             changeTab(item.type)
+                            setNav(true)
                         }}>
                             {item.label}
                         </div>
@@ -111,7 +112,7 @@ export default function Builders() {
                 })}
 
             </div>
-            <div className={style.b}>
+            <div className={style.b} onClick={() => { setNav(true) }}>
                 <img src="/images/BuildingsBanner.png" className={cn(style.banner)} />
             </div>
 

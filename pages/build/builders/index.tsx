@@ -126,7 +126,7 @@ export default function Buildings() {
         <div className={style.container}>
             <Header onClick={handlerHeader} text={'Build'} nav={nav}></Header>
 
-            <div className={cn(style.navContainer, fixedState ? style.fixed : null)} id="switch">
+            <div className={cn(style.navContainer, fixedState ? style.fixed : null)} id="switch" onClick={() => { setNav(true) }}>
                 <div className={style.bg}></div>
                 {TAB.map((item, idx) => {
                     return (
@@ -139,8 +139,8 @@ export default function Buildings() {
                 })}
 
             </div>
-            <div className={style.bg}><img src="/images/buildersBanner.png" /></div>
-            <div className={cn(style.twoNav, fixedState ? style.fix : null)} id="nav">
+            <div className={style.bg} onClick={() => { setNav(true) }}><img src="/images/buildersBanner.png" /></div>
+            <div className={cn(style.twoNav, fixedState ? style.fix : null)} id="nav" onClick={() => { setNav(true) }}>
                 {
                     TwoNav.map((i, idx) => {
                         return <a href={i.type === "Institutions" ? "#Institutions" : "#Individuals"}>
@@ -155,7 +155,7 @@ export default function Buildings() {
                     })
                 }
             </div>
-            <div className={style.cardList}>
+            <div className={style.cardList} onClick={() => { setNav(true) }}>
                 <div className={style.title} >
                     <div className={style.Institutions} id="Institutions"></div>
                     <div></div>

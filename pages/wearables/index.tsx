@@ -94,8 +94,8 @@ function wearables(r) {
         <div className={style.container}>
 
             <Header onClick={handlerHeader} text={"Wearables"} nav={nav}></Header>
-            <div className={cn(style.navContainer, fixedState ? style.fixed : null)} id="switch">
-                <div className={style.bg}></div>
+            <div className={cn(style.navContainer, fixedState ? style.fixed : null)} id="switch" onClick={() => { setNav(true) }}>
+                <div className={style.bg} ></div>
                 {TAB.map((item, idx) => {
                     return (
                         <div className={cn(style.item, tabState === item.type ? style.action : null)} key={idx} onClick={() => {
@@ -107,7 +107,7 @@ function wearables(r) {
                 })}
 
             </div>
-            <div className={style.banner}>
+            <div className={style.banner} onClick={() => { setNav(true) }}>
                 <div className={style.title}>
                     Wearable Creators
                 </div>
@@ -118,7 +118,7 @@ function wearables(r) {
                 </div>
             </div>
 
-            <div className={style.cardList}>
+            <div className={style.cardList} onClick={() => { setNav(true) }}>
                 {data.map((card, idx) => {
                     return <InfoCard {...card} key={idx} onClick={toTopic}></InfoCard>
                 })}

@@ -337,9 +337,9 @@ function MyApp() {
     <div className={style.container} >
       <Header onClick={handlerHeader} text={headerText} nav={nav}></Header>
 
-      <img src="/images/homeBanner.png" className={cn(style.banner, style.mt)} />
+      <img src="/images/homeBanner.png" className={cn(style.banner, style.mt)} onClick={() => { setNav(true) }}/>
 
-      <div id="switch" className={cn(style.nav, fixedState ? style.fix : null)}>
+      <div id="switch" className={cn(style.nav, fixedState ? style.fix : null)} onClick={() => { setNav(true) }}>
         <div className={cn(style.navContainer)}>
           <div className={style.bg}></div>
           {TAB.map((item, idx) => {
@@ -355,7 +355,7 @@ function MyApp() {
 
         </div>
 
-        <div className={cn(style.twoNavContainer)}>
+        <div className={cn(style.twoNavContainer)} onClick={() => { setNav(true) }}>
           <div className={style.parent}>
             {TwoTAB.map((item) => {
               return (
@@ -375,7 +375,7 @@ function MyApp() {
         </div>
 
         {twoNavState !== 'Events' ? (
-          <div className={cn(style.classify, classsifyState ? null : style.ov)}>
+          <div className={cn(style.classify, classsifyState ? null : style.ov)} onClick={() => { setNav(true) }}>
             {typeTotal.map((item) => {
               return (
                 <div
@@ -398,7 +398,7 @@ function MyApp() {
         ) : null}
       </div>
 
-      <div id="cardContainer" className={cn(style.cardContainer)}>
+      <div id="cardContainer" className={cn(style.cardContainer)} onClick={() => { setNav(true) }}>
         {rander}
         {/* {footerState ?  : null} */}
       </div>

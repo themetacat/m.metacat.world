@@ -152,10 +152,11 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
         return () => document.removeEventListener('scroll', listener);
     }, [fixedState]);
 
+
     return (
         <div className={style.container}>
             <Header onClick={handlerHeader} text={"Build"} nav={nav}></Header>
-            <div className={cn(style.info, style.mt)}>
+            <div className={cn(style.info, style.mt)} onClick={() => { setNav(true) }}>
                 <img src={baseInfo.logo_url} className={style.logo} />
                 <div className={style.name}>{baseInfo.name}</div>
                 {base_info.country ? <div className={style.country}>Country : {base_info.country}</div> : null}
@@ -182,11 +183,11 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
                     </div> : null}
                 </div>
 
-                <div className={cn(style.text)} id="content">{baseInfo.description}
+                <div className={cn(style.text)} id="content">{baseInfo.description} 
                 </div>
             </div>
             {
-                parcel_list && wearables ? <div className={cn(style.nav, f1)}>
+                parcel_list && wearables ? <div className={cn(style.nav, f1)} onClick={() => { setNav(true) }}>
                     {NAV.map((i, idx) => {
                         return <div className={cn(style.item, tabState === i.type ? style.ac : null)}
                             onClick={() => {
@@ -200,7 +201,7 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
                     })}
                 </div> : null
             }
-            <div className={(cn(style.search, fixedState ? f4 : null))} id="switch">
+            <div className={(cn(style.search, fixedState ? f4 : null))} id="switch" onClick={() => { setNav(true) }}>
                 <div className={style.input}>
                     <img src="/images/search.png" className={style.searchImg} />
                     <input type="text" placeholder="Search" value={searchText} onInput={changeText} />
@@ -216,7 +217,7 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
                     ) : null}
                 </div>
             </div>
-            <div className={style.list}>
+            <div className={style.list} onClick={() => { setNav(true) }}>
                 {parcelList && tabState === "buildings" ? parcelList.map((item, index) => {
                     return <Card mt={style.marginbottom} {...item} key={index} />;
                 }) : null}
@@ -226,8 +227,8 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
                     next={scrollLoading}
                     loader={<div className={style.bottom}></div>}
                 >
-                    <WearableCard card={wearables} 
-                    tabState={tabState} id={router.query.id} name={baseInfo.name} length={wearables.length}></WearableCard>
+                    <WearableCard card={wearables}
+                        tabState={tabState} id={router.query.id} name={baseInfo.name} length={wearables.length}></WearableCard>
                 </InfiniteScroll > : null}
             </div>
             {contact ? zhezhao : null}

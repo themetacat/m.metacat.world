@@ -140,9 +140,10 @@ function Wearables(r) {
 
     return (
         <div className={style.container}>
+
             <Header onClick={handlerHeader} text={"Wearables"} nav={nav} />
 
-            <div id="switch" className={cn(fixedState ? style.fx : style.n)}>
+            <div id="switch" className={cn(fixedState ? style.fx : style.n)} onClick={() => { setNav(true) }}>
                 <div className={cn(style.navContainer)}>
                     <div className={style.bg}></div>
                     {TAB.map((item, idx) => {
@@ -159,7 +160,7 @@ function Wearables(r) {
             </div>
 
             {
-                navState === "chinesered" ? <div className={style.nav}>
+                navState === "chinesered" ? <div className={style.nav} onClick={() => { setNav(true) }}>
                     <img src="/images/group.png" />
                     <div className={style.title}>
                         WearableDao
@@ -186,7 +187,7 @@ function Wearables(r) {
                 </div> : null
             }
             {
-                navState === "pfp" ? <div className={style.nav}>
+                navState === "pfp" ? <div className={style.nav} onClick={() => { setNav(true) }}>
                     <img src="/images/pfp.jpg" />
                     <div className={style.title}>
                         PFP
@@ -212,7 +213,7 @@ function Wearables(r) {
                     </div>
                 </div> : null
             }
-            <div className={cn(style.twoNav, fixedState ? style.fx2 : null)}>
+            <div className={cn(style.twoNav, fixedState ? style.fx2 : null)} onClick={() => { setNav(true) }}>
                 {Nav.map((i) => {
                     return <div key={uuid} className={cn(style.item, navState === i.type ? style.ac : null)} onClick={() => {
                         setNavState(i.type)
@@ -222,7 +223,7 @@ function Wearables(r) {
                     </div>
                 })}
             </div>
-            <div className={(cn(style.search, fixedState ? style.fx3 : null))} id="switch">
+            <div className={(cn(style.search, fixedState ? style.fx3 : null))} id="switch" onClick={() => { setNav(true) }}>
                 <div className={style.input}>
                     <img src="/images/search.png" className={style.searchImg} />
                     <input type="text" placeholder="Search" value={text} onInput={changeText} />
@@ -238,7 +239,7 @@ function Wearables(r) {
                     ) : null}
                 </div>
             </div>
-            <div className={style.cardList}>
+            <div className={style.cardList} onClick={() => { setNav(true) }}>
                 {rander}
             </div>
 

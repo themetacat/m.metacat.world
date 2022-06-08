@@ -149,38 +149,42 @@ export default function Learn() {
     return (
         <div>
             <Header onClick={handlerHeader} text={"Learn"} nav={nav}></Header>
-            <img src="/images/learn_banner.png" className={cn(style.banner, style.mt)} />
+            <img src="/images/learn_banner.png" onClick={() => { setNav(true); setShowLangState(false) }} className={cn(style.banner, style.mt)} />
             <div className={style.nav}>
                 <div className={style.bg}></div>
                 {Tab.map((item, idx) => {
                     return <div className={cn(style.item, tabState === item.label ? style.action : null)} key={idx} onClick={() => {
                         changeTab(item.label, item.type)
+                        setNav(true);
+                        setShowLangState(false)
                     }}>
                         {item.label}
                     </div>
                 })}
             </div>
-            <div className={style.search}>
+            <div className={style.search} onClick={() => { setNav(true) }}>
                 <div></div>
                 <div className={style.toright}>
 
-                    <Search onSearch={onSearchHandler}></Search>
-                    <div className={style.language} onClick={() => { setShowLangState(!showLangState) }}>
+                    <div onClick={() => { setShowLangState(false) }}>
+                        <Search onSearch={onSearchHandler}></Search>
+                    </div>
+                    <div className={cn(style.language, showLangState ? style.active : null)} onClick={() => { setShowLangState(!showLangState) }}>
                         {langLabel}
                         <img src={`/images/${showLangState ? 'Frame-up.png' : 'Frame-down.png'}`} />
-                        <div className={style.l}>
-                            {showLangState ? ps.map((item, idx) => {
-                                return <div key={idx} className={style.itm} onClick={() => {
+                        <div className={cn(style.l, showLangState ? style.block : style.dn)}>
+                            {ps.map((item, idx) => {
+                                return <div key={idx} className={cn(style.itm, langState === item.value ? style.active : null)} onClick={() => {
                                     changeLangState(item.value, item.label)
                                 }}>
                                     {item.label}
                                 </div>
-                            }) : null}
+                            })}
                         </div>
                     </div>
                 </div>
             </div>
-            <div className={style.cardContainer}>
+            <div className={style.cardContainer} onClick={() => { setNav(true); setShowLangState(false) }}>
                 {rander}
             </div>
             {contact ? zhezhao : null}

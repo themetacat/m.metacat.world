@@ -109,6 +109,12 @@
 .search .toright .language .l .itm:last-child {
   border: none;
 }
+.search .toright .language .l .active {
+  color: #fff;
+}
+.search .toright .active {
+  color: #fff;
+}
 .cardContainer {
   min-height: 500px;
   width: 100%;
@@ -117,4 +123,10 @@
 }
 .marginbottom {
   margin-bottom: 10px;
+}
+.dn {
+  display: none;
+}
+.block {
+  display: block;
 }
