@@ -12,7 +12,7 @@ import ToTop from '../../components/jump-to-top';
 import Card from '../../components/card';
 import WearableCard from '../../components/wearabledaoCard'
 
-import api from '../../lib/test';
+import api from '../../lib/z_api';
 
 const NAV = [
     {
@@ -183,7 +183,7 @@ export default function Topic({ base_info, parcel_list, traffic_list, wearable }
                     </div> : null}
                 </div>
 
-                <div className={cn(style.text)} id="content">{baseInfo.description} 
+                <div className={cn(style.text)} id="content">{baseInfo.description}
                 </div>
             </div>
             {
