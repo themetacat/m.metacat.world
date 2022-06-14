@@ -46,6 +46,7 @@ function Wearables(r) {
     const [navState, setNavState] = React.useState(r.router.query.type || "chinesered")
     const [text, setText] = React.useState("")
     const [data, setData] = React.useState([])
+    const [originData, setOriginData] = React.useState([])
     const [fixedState, setFixedState] = React.useState(false);
 
     const [nav, setNav] = React.useState(null);
@@ -62,6 +63,7 @@ function Wearables(r) {
             }
             if (result && result.code === 100000) {
                 setData(result.data)
+                setOriginData(result.data)
             }
         }, [navState])
 
@@ -105,8 +107,18 @@ function Wearables(r) {
         }, [reqData])
 
     const search = React.useCallback((t) => {
-        console.log("")
-    }, [])
+        if (t === '' || t === null) {
+            setData(originData);
+            return;
+        }
+        const dataToShow = data.filter((x) => {
+            return (
+                x.artist.name.toLocaleLowerCase().indexOf(t.toLocaleLowerCase()) > -1 ||
+                x.artwork.name.toLocaleLowerCase().indexOf(t.toLocaleLowerCase()) > -1
+            );
+        });
+        setData(dataToShow);
+    }, [data, originData])
     const changeText = React.useCallback((e) => {
         setText(e.target.value)
     }, [])
@@ -215,7 +227,7 @@ function Wearables(r) {
             }
             <div className={cn(style.twoNav, fixedState ? style.fx2 : null)} onClick={() => { setNav(true) }}>
                 {Nav.map((i) => {
-                    return <div key={uuid} className={cn(style.item, navState === i.type ? style.ac : null)} onClick={() => {
+                    return <div key={uuid()} className={cn(style.item, navState === i.type ? style.ac : null)} onClick={() => {
                         setNavState(i.type)
                         router.replace(`/wearables/wearabledao?type=${i.type}`)
                     }}>
@@ -226,8 +238,8 @@ function Wearables(r) {
             <div className={(cn(style.search, fixedState ? style.fx3 : null))} id="switch" onClick={() => { setNav(true) }}>
                 <div className={style.input}>
                     <img src="/images/search.png" className={style.searchImg} />
-                    <input type="text" placeholder="Search" value={text} onInput={changeText} />
-                    <div className={style.btn} onClick={() => { search(text) }}>Search</div>
+                    <input type="search" placeholder="Search" value={text} onInput={changeText} onMouseEnter={() => { search(text) }} />
+                    <div className={style.btn} onClick={() => { search(text) }} >Search</div>
                     {text ? (
                         <img
                             src="/images/close.png"

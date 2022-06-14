@@ -29,7 +29,7 @@ export default function Builders() {
     const [contact, setContact] = React.useState(false);
     const [wxState, setWxState] = React.useState(false);
     const [page, setPage] = React.useState(1)
-    const [count, setCount] = React.useState(50)
+    const [count, setCount] = React.useState(80)
     const [data, setData] = React.useState([])
     const [nav, setNav] = React.useState(null);
     const [fixedState, setFixedState] = React.useState(false)
