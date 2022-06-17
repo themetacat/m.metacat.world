@@ -797,6 +797,21 @@ class API {
 
     return json;
   }
+
+  public async req_space_buildings_list(page: number, count: number) {
+    const url1 = `${this.url}/get_cv_space_buildings`;
+    console.log(url1);
+    const search = qs.stringify({ page, count }, { addQueryPrefix: true });
+    const url = `http://8.130.23.16/api/v1/get_cv_space_buildings${search}`;
+    const result = await fetch(url, {
+      method: 'get',
+      mode: 'cors',
+    });
+
+    const json = await result.json();
+
+    return json;
+  }
 }
 
 export default new API('https://api.metacat.world/api/v1');

@@ -31,7 +31,7 @@
   left: 0;
 }
 .navContainer .item {
-  width: 97px;
+  padding: 0 25px;
   height: 36px;
   line-height: 36px;
   text-align: center;

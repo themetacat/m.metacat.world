@@ -1,13 +1,15 @@
 import React from 'react';
 import cn from "classnames"
 import { useRouter } from "next/router"
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import Header from "../../../components/header"
 import Cantact from '../../../components/cantact';
 import BuilderCard from "../../../components/buildcard"
 import ToTop from '../../../components/jump-to-top';
-
+import Footer from '../../../components/footer';
 import { getBuilderList } from '../../../service';
+import { req_space_buildings_list } from "../../../service/z_api"
 
 import style from "./index.module.css"
 
@@ -23,12 +25,12 @@ const TAB = [
     {
         label: 'Space Buildings',
         type: 'spacebuildings',
-      },
+    },
 ];
 
 export default function Builders() {
     const router = useRouter()
-    const [tabState, setTabState] = React.useState("buildings");
+    const [tabState, setTabState] = React.useState("spacebuildings");
     const [headerText, setHeaderText] = React.useState("")
     const [contact, setContact] = React.useState(false);
     const [wxState, setWxState] = React.useState(false);
@@ -55,18 +57,34 @@ export default function Builders() {
 
     const reqData = React.useCallback(
         async () => {
-            const result = await getBuilderList(page, count)
+            const result = await req_space_buildings_list(page, count)
             if (result.code === 100000) {
-                setData(result.data.list)
+                setData(result.data)
             }
         }, [page, count])
+
+    const scrollLoading = React.useCallback(async () => {
+        const p = page + 1
+        const result = await req_space_buildings_list(p, count)
+        if (result.code === 100000) {
+            setData([...data, ...result.data])
+        }
+
+    }, [page, count, data])
 
     const rander = React.useMemo(() => {
         return (
             <div className={style.list} onClick={() => { setNav(true) }}>
-                {data.map((card) => {
-                    return <BuilderCard {...card} mb={style.marginbottom}></BuilderCard>
-                })}
+                <InfiniteScroll
+                    dataLength={data.length}
+                    hasMore={true}
+                    next={scrollLoading}
+                    loader={<Footer length={data.length} />}
+                >
+                    {data.map((card) => {
+                        return <BuilderCard {...card} mb={style.marginbottom}></BuilderCard>
+                    })}
+                </InfiniteScroll>
             </div>
         )
     }, [data])

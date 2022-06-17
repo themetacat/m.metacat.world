@@ -794,3 +794,16 @@ export const req_topic_detail = async (id: number, creator: string) => {
 
   return json;
 };
+
+export const req_space_buildings_list = async (page: number, count: number) => {
+  const search = qs.stringify({ page, count }, { addQueryPrefix: true });
+  const url = `/api/get_cv_space_buildings${search}`;
+  const result = await fetch(url, {
+    method: 'get',
+    mode: 'cors',
+  });
+
+  const json = await result.json();
+
+  return json;
+};
