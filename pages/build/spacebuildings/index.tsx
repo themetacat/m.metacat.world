@@ -81,8 +81,8 @@ export default function Builders() {
                     next={scrollLoading}
                     loader={<Footer length={data.length} />}
                 >
-                    {data.map((card) => {
-                        return <BuilderCard {...card} mb={style.marginbottom}></BuilderCard>
+                    {data.map((card, idx) => {
+                        return <BuilderCard {...card} mb={style.marginbottom} key={idx}></BuilderCard>
                     })}
                 </InfiniteScroll>
             </div>
