@@ -135,7 +135,7 @@ export default function Builders() {
 
             </div>
             <div className={style.b} onClick={() => { setNav(true) }}>
-                <img src="/images/BuildingsBanner.png" className={cn(style.banner)} />
+                <img src="/images/banner/spacebuilding.png" className={cn(style.banner)} />
             </div>
 
             <div>
